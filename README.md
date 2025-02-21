@@ -2,7 +2,7 @@
 
 <b>Features:</b>
 <ul>
-<li>Generates 25 API files needed from the selected model type with a few clicks</li>
+<li>Generates all 25 API files needed for CRUD / Endpoint creation from your selected model type with a few clicks</li>
 <li>Add Route & Service Configuration to Catalogmodule.cs</li>
 <li>Root Namespace can be changed</li>
 <li>Plural Entity name can be set</li>
