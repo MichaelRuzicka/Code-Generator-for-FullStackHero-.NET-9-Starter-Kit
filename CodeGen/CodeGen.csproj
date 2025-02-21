@@ -1,0 +1,104 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows7.0</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Templates\Domain\Application\Create\v1\CreateBrandCommand.cs" />
+    <Compile Remove="Templates\Domain\Application\Create\v1\CreateBrandCommandValidator.cs" />
+    <Compile Remove="Templates\Domain\Application\Create\v1\CreateBrandHandler.cs" />
+    <Compile Remove="Templates\Domain\Application\Create\v1\CreateBrandResponse.cs" />
+    <Compile Remove="Templates\Domain\Application\Create\v1\CreateTemplateCommand.cs" />
+    <Compile Remove="Templates\Domain\Application\Create\v1\CreateTemplateCommandValidator.cs" />
+    <Compile Remove="Templates\Domain\Application\Create\v1\CreateTemplateHandler.cs" />
+    <Compile Remove="Templates\Domain\Application\Create\v1\CreateTemplateResponse.cs" />
+    <Compile Remove="Templates\Domain\Application\Delete\v1\DeleteBrandCommand.cs" />
+    <Compile Remove="Templates\Domain\Application\Delete\v1\DeleteBrandHandler.cs" />
+    <Compile Remove="Templates\Domain\Application\Delete\v1\DeleteTemplateCommand.cs" />
+    <Compile Remove="Templates\Domain\Application\Delete\v1\DeleteTemplateHandler.cs" />
+    <Compile Remove="Templates\Domain\Application\EventHandlers\BrandCreatedEventHandler.cs" />
+    <Compile Remove="Templates\Domain\Application\EventHandlers\TemplateCreatedEventHandler.cs" />
+    <Compile Remove="Templates\Domain\Application\Get\v1\BrandResponse.cs" />
+    <Compile Remove="Templates\Domain\Application\Get\v1\GetBrandHandler.cs" />
+    <Compile Remove="Templates\Domain\Application\Get\v1\GetBrandRequest.cs" />
+    <Compile Remove="Templates\Domain\Application\Get\v1\GetTemplateHandler.cs" />
+    <Compile Remove="Templates\Domain\Application\Get\v1\GetTemplateRequest.cs" />
+    <Compile Remove="Templates\Domain\Application\Get\v1\TemplateResponse.cs" />
+    <Compile Remove="Templates\Domain\Application\Search\v1\SearchBrandsCommand.cs" />
+    <Compile Remove="Templates\Domain\Application\Search\v1\SearchBrandsHandler.cs" />
+    <Compile Remove="Templates\Domain\Application\Search\v1\SearchBrandSpecs.cs" />
+    <Compile Remove="Templates\Domain\Application\Search\v1\SearchTemplateCommand.cs" />
+    <Compile Remove="Templates\Domain\Application\Search\v1\SearchTemplateHandler.cs" />
+    <Compile Remove="Templates\Domain\Application\Search\v1\SearchTemplateSpecs.cs" />
+    <Compile Remove="Templates\Domain\Application\Update\v1\UpdateBrandCommand.cs" />
+    <Compile Remove="Templates\Domain\Application\Update\v1\UpdateBrandCommandValidator.cs" />
+    <Compile Remove="Templates\Domain\Application\Update\v1\UpdateBrandHandler.cs" />
+    <Compile Remove="Templates\Domain\Application\Update\v1\UpdateBrandResponse.cs" />
+    <Compile Remove="Templates\Domain\Application\Update\v1\UpdateTemplateCommand.cs" />
+    <Compile Remove="Templates\Domain\Application\Update\v1\UpdateTemplateCommandValidator.cs" />
+    <Compile Remove="Templates\Domain\Application\Update\v1\UpdateTemplateHandler.cs" />
+    <Compile Remove="Templates\Domain\Application\Update\v1\UpdateTemplateResponse.cs" />
+    <Compile Remove="Templates\Domain\Events\BrandCreated.cs" />
+    <Compile Remove="Templates\Domain\Events\BrandUpdated.cs" />
+    <Compile Remove="Templates\Domain\Events\TemplateCreated.cs" />
+    <Compile Remove="Templates\Domain\Events\TemplateUpdated.cs" />
+    <Compile Remove="Templates\Domain\Exceptions\BrandNotFoundException.cs" />
+    <Compile Remove="Templates\Domain\Exceptions\TemplateNotFoundException.cs" />
+    <Compile Remove="Templates\Infrastructure\CreateBrandEndpoint.cs" />
+    <Compile Remove="Templates\Infrastructure\CreateTemplateEndpoint.cs" />
+    <Compile Remove="Templates\Infrastructure\DeleteBrandEndpoint.cs" />
+    <Compile Remove="Templates\Infrastructure\DeleteTemplateEndpoint.cs" />
+    <Compile Remove="Templates\Infrastructure\Endpoints\v1\CreateTemplateEndpoint.cs" />
+    <Compile Remove="Templates\Infrastructure\Endpoints\v1\DeleteTemplateEndpoint.cs" />
+    <Compile Remove="Templates\Infrastructure\Endpoints\v1\GetTemplateEndpoint.cs" />
+    <Compile Remove="Templates\Infrastructure\Endpoints\v1\SearchTemplateEndpoint.cs" />
+    <Compile Remove="Templates\Infrastructure\Endpoints\v1\UpdateTemplateEndpoint.cs" />
+    <Compile Remove="Templates\Infrastructure\GetBrandEndpoint.cs" />
+    <Compile Remove="Templates\Infrastructure\GetTemplateEndpoint.cs" />
+    <Compile Remove="Templates\Infrastructure\SearchBrandsEndpoint.cs" />
+    <Compile Remove="Templates\Infrastructure\SearchTemplateEndpoint.cs" />
+    <Compile Remove="Templates\Infrastructure\TemplateModule.cs" />
+    <Compile Remove="Templates\Infrastructure\UpdateBrandEndpoint.cs" />
+    <Compile Remove="Templates\Infrastructure\UpdateTemplateEndpoint.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Templates\Domain\Application\Create\v1\CreateTemplateCommand.cs" />
+    <None Include="Templates\Domain\Application\Create\v1\CreateTemplateCommandValidator.cs" />
+    <None Include="Templates\Domain\Application\Create\v1\CreateTemplateHandler.cs" />
+    <None Include="Templates\Domain\Application\Create\v1\CreateTemplateResponse.cs" />
+    <None Include="Templates\Domain\Application\Delete\v1\DeleteTemplateCommand.cs" />
+    <None Include="Templates\Domain\Application\Delete\v1\DeleteTemplateHandler.cs" />
+    <None Include="Templates\Domain\Application\EventHandlers\TemplateCreatedEventHandler.cs" />
+    <None Include="Templates\Domain\Application\Get\v1\GetTemplateHandler.cs" />
+    <None Include="Templates\Domain\Application\Get\v1\GetTemplateRequest.cs" />
+    <None Include="Templates\Domain\Application\Get\v1\TemplateResponse.cs" />
+    <None Include="Templates\Domain\Application\Search\v1\SearchTemplateCommand.cs" />
+    <None Include="Templates\Domain\Application\Search\v1\SearchTemplateHandler.cs" />
+    <None Include="Templates\Domain\Application\Search\v1\SearchTemplateSpecs.cs" />
+    <None Include="Templates\Domain\Application\Update\v1\UpdateTemplateCommand.cs" />
+    <None Include="Templates\Domain\Application\Update\v1\UpdateTemplateCommandValidator.cs" />
+    <None Include="Templates\Domain\Application\Update\v1\UpdateTemplateHandler.cs" />
+    <None Include="Templates\Domain\Application\Update\v1\UpdateTemplateResponse.cs" />
+    <None Include="Templates\Domain\Events\TemplateCreated.cs" />
+    <None Include="Templates\Domain\Events\TemplateUpdated.cs" />
+    <None Include="Templates\Domain\Exceptions\TemplateNotFoundException.cs" />
+    <None Include="Templates\Infrastructure\TemplateModule.cs" />
+    <None Include="Templates\Infrastructure\Endpoints\v1\CreateTemplateEndpoint.cs" />
+    <None Include="Templates\Infrastructure\Endpoints\v1\DeleteTemplateEndpoint.cs" />
+    <None Include="Templates\Infrastructure\Endpoints\v1\GetTemplateEndpoint.cs" />
+    <None Include="Templates\Infrastructure\Endpoints\v1\SearchTemplateEndpoint.cs" />
+    <None Include="Templates\Infrastructure\Endpoints\v1\UpdateTemplateEndpoint.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Win.Design" Version="24.2.3" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.2" />
+  </ItemGroup>
+
+</Project>
