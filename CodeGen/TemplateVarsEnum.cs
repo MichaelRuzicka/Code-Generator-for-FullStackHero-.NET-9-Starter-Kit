@@ -6,6 +6,9 @@ namespace CodeGen
 {
     public enum TemplateVarsEnum
     {
+        [EnumMember(Value = "[Root_Namespace]")] // Default: FSH
+        Root_Namespace,
+
         [EnumMember(Value = "[Module]")] // Default: zb.Catalog
         Module,
 

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Mapster;
 
-namespace [Module_Namespace].[ModuleName].Application.[EntitySet].Create.v1;
+namespace [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].Create.v1;
 
 public class Create[Entity]CommandValidator : AbstractValidator<Create[Entity]Command>
 {

@@ -1,15 +1,15 @@
 ﻿using Carter;
-using FSH.Framework.Core.Persistence;
-using FSH.Framework.Infrastructure.Persistence;
-using [Module_Namespace].[Module].Domain;
-using [Module_Namespace].[Module].Infrastructure.Endpoints.v1;
-using [Module_Namespace].[Module].Infrastructure.Persistence;
+using [Root_Namespace].Framework.Core.Persistence;
+using [Root_Namespace].Framework.Infrastructure.Persistence;
+using [Root_Namespace].[Module_Namespace].[Module].Domain;
+using [Root_Namespace].[Module_Namespace].[Module].Infrastructure.Endpoints.v1;
+using [Root_Namespace].[Module_Namespace].[Module].Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace [Module_Namespace].[Module].Infrastructure;
+namespace [Root_Namespace].[Module_Namespace].[Module].Infrastructure;
 public static class [Module]Module
 {
     public class Endpoints : CarterModule

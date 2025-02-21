@@ -1,8 +1,8 @@
-﻿using [Module_Namespace].[Module].Domain.Events;
+﻿using [Root_Namespace].[Module_Namespace].[Module].Domain.Events;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace [Module_Namespace].[Module].Application.[EntitySet].EventHandlers;
+namespace [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].EventHandlers;
 
 public class [Entity]CreatedEventHandler(ILogger<[Entity]CreatedEventHandler> logger) : INotificationHandler<[Entity]Created>
 {

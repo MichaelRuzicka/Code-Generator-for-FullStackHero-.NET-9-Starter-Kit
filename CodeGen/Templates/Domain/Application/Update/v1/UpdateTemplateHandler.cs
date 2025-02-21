@@ -1,11 +1,11 @@
-using FSH.Framework.Core.Persistence;
-using [Module_Namespace].[Module].Domain;
-using [Module_Namespace].[Module].Domain.Exceptions;
+using [Root_Namespace].Framework.Core.Persistence;
+using [Root_Namespace].[Module_Namespace].[Module].Domain;
+using [Root_Namespace].[Module_Namespace].[Module].Domain.Exceptions;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace [Module_Namespace].[Module].Application.[EntitySet].Update.v1;
+namespace [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].Update.v1;
 
 public sealed class Update[Entity]Handler(ILogger<Update[Entity]Handler> logger, [FromKeyedServices("[ServiceKey]")] IRepository<[Entity]> repository) : IRequestHandler<Update[Entity]Command, Update[Entity]Response>
 {

@@ -1,6 +1,6 @@
-﻿using FSH.Framework.Core.Exceptions;
+﻿using [Root_Namespace].Framework.Core.Exceptions;
 
-namespace [Module_Namespace].[Module].Domain.Exceptions;
+namespace [Root_Namespace].[Module_Namespace].[Module].Domain.Exceptions;
 
 public sealed class [Entity]NotFoundException : NotFoundException
 {

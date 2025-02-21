@@ -1,12 +1,12 @@
 using Microsoft.Extensions.DependencyInjection;
-using [Module_Namespace].[Module].Domain.Exceptions;
-using FSH.Framework.Core.Persistence;
-using FSH.Framework.Core.Caching;
-using [Module_Namespace].[Module].Domain;
+using [Root_Namespace].[Module_Namespace].[Module].Domain.Exceptions;
+using [Root_Namespace].Framework.Core.Persistence;
+using [Root_Namespace].Framework.Core.Caching;
+using [Root_Namespace].[Module_Namespace].[Module].Domain;
 using MediatR;
 using System.Threading.Tasks;
 
-namespace [Module_Namespace].[Module].Application.[EntitySet].Get.v1;
+namespace [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].Get.v1;
 
 public sealed class Get[Entity]Handler([FromKeyedServices("[ServiceKey]")] IReadRepository<[Entity]> repository, ICacheService cache) : IRequestHandler<Get[Entity]Request, [Entity]Response>
 {

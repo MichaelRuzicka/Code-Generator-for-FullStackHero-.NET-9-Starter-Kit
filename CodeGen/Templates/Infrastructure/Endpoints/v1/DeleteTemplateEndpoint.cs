@@ -1,11 +1,11 @@
-﻿using FSH.Framework.Infrastructure.Auth.Policy;
-using [Module_Namespace].[Module].Application.[EntitySet].Delete.v1;
+﻿using [Root_Namespace].Framework.Infrastructure.Auth.Policy;
+using [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].Delete.v1;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace [Module_Namespace].[Module].Infrastructure.Endpoints.v1;
+namespace [Root_Namespace].[Module_Namespace].[Module].Infrastructure.Endpoints.v1;
 
 public static class Delete[Entity]Endpoint
 {

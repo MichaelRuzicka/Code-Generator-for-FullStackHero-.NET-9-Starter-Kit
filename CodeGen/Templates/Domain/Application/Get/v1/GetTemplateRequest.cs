@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace [Module_Namespace].[ModuleName].Application.[EntitySet].Get.v1;
+namespace [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].Get.v1;
 
 public class Get[Entity]Request : IRequest<[Entity]Response>
 {

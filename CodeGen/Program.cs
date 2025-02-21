@@ -34,6 +34,7 @@ namespace CodeGen
             {
                 services.AddTransient<ICodebuilder, Codebuilder>();
                 services.AddTransient<ITemplateLineHandler, ModuleNameLineHandler>();
+                services.AddTransient<ITemplateLineHandler, Root_NamespaceLineHandler>();
                 services.AddTransient<ITemplateLineHandler, Module_NamespaceLineHandler>();
                 services.AddTransient<ITemplateLineHandler, EntitySetLineHandler>();
                 services.AddTransient<ITemplateLineHandler, EntityLineHandler>();
@@ -43,7 +44,7 @@ namespace CodeGen
                 services.AddTransient<ITemplateLineHandler, ServiceKeyLineHandler>();
                 services.AddTransient<ITemplateLineHandler, ServicesLineHandler>();
                 services.AddTransient<ITemplateLineHandler, RoutesLineHandler>();
-
+ 
                 services.AddTransient<frmMain>();
             });
         }

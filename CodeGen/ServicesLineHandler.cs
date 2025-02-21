@@ -12,10 +12,10 @@ namespace CodeGen
             string modulSetLowerCase = Params.ModuleName.ToLower();
 
             StringBuilder serviceRegistration = new StringBuilder();
-            serviceRegistration.Append("builder.Services.AddKeyedScoped<IRepository<[Entity]>, CatalogRepository<[Entity]>>(\"[ModulName]:[EntitySet]\");");
+            serviceRegistration.Append("builder.Services.AddKeyedScoped<IRepository<[Entity]>, CatalogRepository<[Entity]>>(\"[Module]:[EntitySet]\");");
             serviceRegistration.Append(Environment.NewLine).Append("\t").Append("\t");
 
-            serviceRegistration.Append("builder.Services.AddKeyedScoped<IReadRepository<[Entity]>, CatalogRepository<[Entity]>>(\"[ModulName]:[EntitySet]\");");
+            serviceRegistration.Append("builder.Services.AddKeyedScoped<IReadRepository<[Entity]>, CatalogRepository<[Entity]>>(\"[Module]:[EntitySet]\");");
             serviceRegistration.Append(Environment.NewLine).Append(Environment.NewLine).Append("\t").Append("\t");
 
 
@@ -23,7 +23,7 @@ namespace CodeGen
             serviceRegistration.Append(Environment.NewLine).Append(Environment.NewLine);
 
             serviceRegistration.Replace("[EntitySet]", entitySetLowerCase);
-            serviceRegistration.Replace("[ModulName]", modulSetLowerCase);
+            serviceRegistration.Replace("[Module]", modulSetLowerCase);
             serviceRegistration.Replace("[Entity]", Params.Entity);
             templateLine = templateLine.Replace(EnumExtensions.GetEnumValue(TemplateVarsEnum.Services), serviceRegistration.ToString());
         }

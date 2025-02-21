@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace [Module_Namespace].[Module].Application.[EntitySet].Update.v1;
+namespace [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].Update.v1;
 
 public class Update[Entity]CommandValidator : AbstractValidator<Update[Entity]Command>
 {

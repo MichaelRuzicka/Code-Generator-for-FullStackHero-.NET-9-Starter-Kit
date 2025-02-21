@@ -1,11 +1,11 @@
-﻿using FSH.Framework.Core.Persistence;
-using [Module_Namespace].[ModuleName].Domain;
-using [Module_Namespace].[ModuleName].Domain.Exceptions;
+﻿using [Root_Namespace].Framework.Core.Persistence;
+using [Root_Namespace].[Module_Namespace].[Module].Domain;
+using [Root_Namespace].[Module_Namespace].[Module].Domain.Exceptions;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace [Module_Namespace].[ModuleName].Application.[EntitySet].Delete.v1;
+namespace [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].Delete.v1;
 
 public sealed class Delete[Entity]Handler(ILogger<Delete[Entity]Handler> logger,[FromKeyedServices([ServiceKey])] IRepository<[Entity]> repository):IRequestHandler<Delete[Entity]Command>
 {

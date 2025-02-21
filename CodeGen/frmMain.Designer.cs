@@ -108,6 +108,8 @@
             layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(components);
             textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            txtRootNameSpace = new DevExpress.XtraEditors.TextEdit();
+            layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtOutputPath.Properties).BeginInit();
@@ -185,10 +187,13 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem26).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem27).BeginInit();
             ((System.ComponentModel.ISupportInitialize)textEdit1.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtRootNameSpace.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem28).BeginInit();
             SuspendLayout();
             // 
             // layoutControl1
             // 
+            layoutControl1.Controls.Add(txtRootNameSpace);
             layoutControl1.Controls.Add(btnOutputPath);
             layoutControl1.Controls.Add(txtOutputPath);
             layoutControl1.Controls.Add(txtEntitynamePlural);
@@ -233,7 +238,7 @@
             // 
             // txtEntitynamePlural
             // 
-            txtEntitynamePlural.Location = new System.Drawing.Point(644, 205);
+            txtEntitynamePlural.Location = new System.Drawing.Point(644, 201);
             txtEntitynamePlural.Name = "txtEntitynamePlural";
             txtEntitynamePlural.Size = new System.Drawing.Size(350, 20);
             txtEntitynamePlural.StyleController = layoutControl1;
@@ -241,28 +246,28 @@
             // 
             // txtModulNamepace
             // 
-            txtModulNamepace.EditValue = "FSH.Starter.WebApi";
-            txtModulNamepace.Location = new System.Drawing.Point(151, 90);
+            txtModulNamepace.EditValue = "Starter.WebApi";
+            txtModulNamepace.Location = new System.Drawing.Point(458, 90);
             txtModulNamepace.Name = "txtModulNamepace";
-            txtModulNamepace.Size = new System.Drawing.Size(350, 20);
+            txtModulNamepace.Size = new System.Drawing.Size(194, 20);
             txtModulNamepace.StyleController = layoutControl1;
             txtModulNamepace.TabIndex = 11;
             // 
             // txtModulName
             // 
             txtModulName.EditValue = "Catalog";
-            txtModulName.Location = new System.Drawing.Point(644, 90);
+            txtModulName.Location = new System.Drawing.Point(795, 90);
             txtModulName.Name = "txtModulName";
-            txtModulName.Size = new System.Drawing.Size(350, 20);
+            txtModulName.Size = new System.Drawing.Size(199, 20);
             txtModulName.StyleController = layoutControl1;
             txtModulName.TabIndex = 10;
             // 
             // groupControl2
             // 
             groupControl2.Controls.Add(layoutControl2);
-            groupControl2.Location = new System.Drawing.Point(12, 229);
+            groupControl2.Location = new System.Drawing.Point(12, 225);
             groupControl2.Name = "groupControl2";
-            groupControl2.Size = new System.Drawing.Size(982, 448);
+            groupControl2.Size = new System.Drawing.Size(982, 452);
             groupControl2.TabIndex = 7;
             groupControl2.Text = "Select Propertys & Options";
             // 
@@ -276,7 +281,7 @@
             layoutControl2.Location = new System.Drawing.Point(2, 23);
             layoutControl2.Name = "layoutControl2";
             layoutControl2.Root = layoutControlGroup1;
-            layoutControl2.Size = new System.Drawing.Size(978, 423);
+            layoutControl2.Size = new System.Drawing.Size(978, 427);
             layoutControl2.TabIndex = 0;
             layoutControl2.Text = "layoutControl2";
             // 
@@ -284,9 +289,9 @@
             // 
             groupControl4.Controls.Add(chkSelectAllApp);
             groupControl4.Controls.Add(layoutControl5);
-            groupControl4.Location = new System.Drawing.Point(415, 215);
+            groupControl4.Location = new System.Drawing.Point(415, 217);
             groupControl4.Name = "groupControl4";
-            groupControl4.Size = new System.Drawing.Size(551, 196);
+            groupControl4.Size = new System.Drawing.Size(551, 198);
             groupControl4.TabIndex = 5;
             groupControl4.Text = "Application Layer MediatR Build Options";
             // 
@@ -312,7 +317,7 @@
             layoutControl5.Location = new System.Drawing.Point(2, 23);
             layoutControl5.Name = "layoutControl5";
             layoutControl5.Root = layoutControlGroup4;
-            layoutControl5.Size = new System.Drawing.Size(547, 171);
+            layoutControl5.Size = new System.Drawing.Size(547, 173);
             layoutControl5.TabIndex = 0;
             layoutControl5.Text = "layoutControl5";
             // 
@@ -376,7 +381,7 @@
             layoutControlGroup4.GroupBordersVisible = false;
             layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem17, layoutControlItem18, layoutControlItem19, layoutControlItem20, layoutControlItem21, layoutControlItem22 });
             layoutControlGroup4.Name = "layoutControlGroup4";
-            layoutControlGroup4.Size = new System.Drawing.Size(547, 171);
+            layoutControlGroup4.Size = new System.Drawing.Size(547, 173);
             layoutControlGroup4.TextVisible = false;
             // 
             // layoutControlItem17
@@ -424,16 +429,16 @@
             layoutControlItem22.Control = chkMediatRSearch;
             layoutControlItem22.Location = new System.Drawing.Point(0, 120);
             layoutControlItem22.Name = "layoutControlItem22";
-            layoutControlItem22.Size = new System.Drawing.Size(527, 31);
+            layoutControlItem22.Size = new System.Drawing.Size(527, 33);
             layoutControlItem22.TextVisible = false;
             // 
             // groupControl3
             // 
             groupControl3.Controls.Add(chkSelectAllDomain);
             groupControl3.Controls.Add(layoutControl4);
-            groupControl3.Location = new System.Drawing.Point(415, 114);
+            groupControl3.Location = new System.Drawing.Point(415, 115);
             groupControl3.Name = "groupControl3";
-            groupControl3.Size = new System.Drawing.Size(551, 97);
+            groupControl3.Size = new System.Drawing.Size(551, 98);
             groupControl3.TabIndex = 4;
             groupControl3.Text = "Domain Layer Build Options";
             // 
@@ -455,7 +460,7 @@
             layoutControl4.Location = new System.Drawing.Point(2, 23);
             layoutControl4.Name = "layoutControl4";
             layoutControl4.Root = layoutControlGroup3;
-            layoutControl4.Size = new System.Drawing.Size(547, 72);
+            layoutControl4.Size = new System.Drawing.Size(547, 73);
             layoutControl4.TabIndex = 0;
             layoutControl4.Text = "layoutControl4";
             // 
@@ -483,7 +488,7 @@
             layoutControlGroup3.GroupBordersVisible = false;
             layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem11, layoutControlItem15 });
             layoutControlGroup3.Name = "layoutControlGroup3";
-            layoutControlGroup3.Size = new System.Drawing.Size(547, 72);
+            layoutControlGroup3.Size = new System.Drawing.Size(547, 73);
             layoutControlGroup3.TextVisible = false;
             // 
             // layoutControlItem11
@@ -499,7 +504,7 @@
             layoutControlItem15.Control = chkDomainExceptions;
             layoutControlItem15.Location = new System.Drawing.Point(0, 24);
             layoutControlItem15.Name = "layoutControlItem15";
-            layoutControlItem15.Size = new System.Drawing.Size(527, 28);
+            layoutControlItem15.Size = new System.Drawing.Size(527, 29);
             layoutControlItem15.TextVisible = false;
             // 
             // groupControl1
@@ -508,7 +513,7 @@
             groupControl1.Controls.Add(layoutControl3);
             groupControl1.Location = new System.Drawing.Point(415, 12);
             groupControl1.Name = "groupControl1";
-            groupControl1.Size = new System.Drawing.Size(551, 98);
+            groupControl1.Size = new System.Drawing.Size(551, 99);
             groupControl1.TabIndex = 3;
             groupControl1.Text = "Infrastructure Layer Build Options";
             // 
@@ -530,7 +535,7 @@
             layoutControl3.Location = new System.Drawing.Point(2, 23);
             layoutControl3.Name = "layoutControl3";
             layoutControl3.Root = layoutControlGroup2;
-            layoutControl3.Size = new System.Drawing.Size(547, 73);
+            layoutControl3.Size = new System.Drawing.Size(547, 74);
             layoutControl3.TabIndex = 0;
             layoutControl3.Text = "layoutControl3";
             // 
@@ -558,7 +563,7 @@
             layoutControlGroup2.GroupBordersVisible = false;
             layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem12, layoutControlItem14 });
             layoutControlGroup2.Name = "layoutControlGroup2";
-            layoutControlGroup2.Size = new System.Drawing.Size(547, 73);
+            layoutControlGroup2.Size = new System.Drawing.Size(547, 74);
             layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem12
@@ -574,14 +579,14 @@
             layoutControlItem14.Control = chkRoutesRegister;
             layoutControlItem14.Location = new System.Drawing.Point(0, 24);
             layoutControlItem14.Name = "layoutControlItem14";
-            layoutControlItem14.Size = new System.Drawing.Size(527, 29);
+            layoutControlItem14.Size = new System.Drawing.Size(527, 30);
             layoutControlItem14.TextVisible = false;
             // 
             // checkedListBoxControl1
             // 
             checkedListBoxControl1.Location = new System.Drawing.Point(12, 12);
             checkedListBoxControl1.Name = "checkedListBoxControl1";
-            checkedListBoxControl1.Size = new System.Drawing.Size(399, 399);
+            checkedListBoxControl1.Size = new System.Drawing.Size(399, 403);
             checkedListBoxControl1.StyleController = layoutControl2;
             checkedListBoxControl1.TabIndex = 2;
             // 
@@ -591,7 +596,7 @@
             layoutControlGroup1.GroupBordersVisible = false;
             layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem4, layoutControlItem13, layoutControlItem16, layoutControlItem3 });
             layoutControlGroup1.Name = "layoutControlGroup1";
-            layoutControlGroup1.Size = new System.Drawing.Size(978, 423);
+            layoutControlGroup1.Size = new System.Drawing.Size(978, 427);
             layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem4
@@ -599,23 +604,23 @@
             layoutControlItem4.Control = groupControl1;
             layoutControlItem4.Location = new System.Drawing.Point(403, 0);
             layoutControlItem4.Name = "layoutControlItem4";
-            layoutControlItem4.Size = new System.Drawing.Size(555, 102);
+            layoutControlItem4.Size = new System.Drawing.Size(555, 103);
             layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem13
             // 
             layoutControlItem13.Control = groupControl3;
-            layoutControlItem13.Location = new System.Drawing.Point(403, 102);
+            layoutControlItem13.Location = new System.Drawing.Point(403, 103);
             layoutControlItem13.Name = "layoutControlItem13";
-            layoutControlItem13.Size = new System.Drawing.Size(555, 101);
+            layoutControlItem13.Size = new System.Drawing.Size(555, 102);
             layoutControlItem13.TextVisible = false;
             // 
             // layoutControlItem16
             // 
             layoutControlItem16.Control = groupControl4;
-            layoutControlItem16.Location = new System.Drawing.Point(403, 203);
+            layoutControlItem16.Location = new System.Drawing.Point(403, 205);
             layoutControlItem16.Name = "layoutControlItem16";
-            layoutControlItem16.Size = new System.Drawing.Size(555, 200);
+            layoutControlItem16.Size = new System.Drawing.Size(555, 202);
             layoutControlItem16.TextVisible = false;
             // 
             // layoutControlItem3
@@ -623,7 +628,7 @@
             layoutControlItem3.Control = checkedListBoxControl1;
             layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.Size = new System.Drawing.Size(403, 403);
+            layoutControlItem3.Size = new System.Drawing.Size(403, 407);
             layoutControlItem3.TextVisible = false;
             // 
             // btnFrameWork
@@ -654,7 +659,7 @@
             btnParse.Appearance.Options.UseForeColor = true;
             btnParse.Location = new System.Drawing.Point(12, 126);
             btnParse.Name = "btnParse";
-            btnParse.Size = new System.Drawing.Size(982, 34);
+            btnParse.Size = new System.Drawing.Size(982, 32);
             btnParse.StyleController = layoutControl1;
             btnParse.TabIndex = 6;
             btnParse.Text = "Parse Assembly";
@@ -683,7 +688,7 @@
             // 
             cbEntity.EditValue = "Select Model Entity ...";
             cbEntity.Enabled = false;
-            cbEntity.Location = new System.Drawing.Point(151, 205);
+            cbEntity.Location = new System.Drawing.Point(151, 201);
             cbEntity.Name = "cbEntity";
             cbEntity.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             cbEntity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
@@ -718,7 +723,7 @@
             // 
             Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             Root.GroupBordersVisible = false;
-            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { liModel, emptySpaceItem1, layoutControlItem1, layoutControlItem5, layoutControlItem6, emptySpaceItem2, layoutControlItem8, layoutControlItem9, layoutControlItem7, emptySpaceItem3, emptySpaceItem4, layoutControlItem10, layoutControlItem2, layoutControlItem24, layoutControlItem25, layoutControlItem23, layoutControlItem26, layoutControlItem27 });
+            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { liModel, emptySpaceItem1, layoutControlItem1, layoutControlItem5, layoutControlItem6, emptySpaceItem2, layoutControlItem8, layoutControlItem9, layoutControlItem7, emptySpaceItem3, emptySpaceItem4, layoutControlItem10, layoutControlItem2, layoutControlItem24, layoutControlItem25, layoutControlItem23, layoutControlItem26, layoutControlItem27, layoutControlItem28 });
             Root.Name = "Root";
             Root.Size = new System.Drawing.Size(1006, 715);
             Root.TextVisible = false;
@@ -790,7 +795,7 @@
             layoutControlItem7.MaxSize = new System.Drawing.Size(0, 50);
             layoutControlItem7.MinSize = new System.Drawing.Size(86, 26);
             layoutControlItem7.Name = "layoutControlItem7";
-            layoutControlItem7.Size = new System.Drawing.Size(986, 38);
+            layoutControlItem7.Size = new System.Drawing.Size(986, 36);
             layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutControlItem7.TextVisible = false;
             // 
@@ -802,22 +807,22 @@
             // 
             // emptySpaceItem4
             // 
-            emptySpaceItem4.Location = new System.Drawing.Point(0, 152);
+            emptySpaceItem4.Location = new System.Drawing.Point(0, 150);
             emptySpaceItem4.Name = "emptySpaceItem4";
-            emptySpaceItem4.Size = new System.Drawing.Size(986, 41);
+            emptySpaceItem4.Size = new System.Drawing.Size(986, 39);
             // 
             // layoutControlItem10
             // 
             layoutControlItem10.Control = groupControl2;
-            layoutControlItem10.Location = new System.Drawing.Point(0, 217);
+            layoutControlItem10.Location = new System.Drawing.Point(0, 213);
             layoutControlItem10.Name = "layoutControlItem10";
-            layoutControlItem10.Size = new System.Drawing.Size(986, 452);
+            layoutControlItem10.Size = new System.Drawing.Size(986, 456);
             layoutControlItem10.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             layoutControlItem2.Control = cbEntity;
-            layoutControlItem2.Location = new System.Drawing.Point(0, 193);
+            layoutControlItem2.Location = new System.Drawing.Point(0, 189);
             layoutControlItem2.Name = "layoutControlItem2";
             layoutControlItem2.Size = new System.Drawing.Size(493, 24);
             layoutControlItem2.Text = "Entity";
@@ -825,23 +830,23 @@
             // layoutControlItem24
             // 
             layoutControlItem24.Control = txtModulName;
-            layoutControlItem24.Location = new System.Drawing.Point(493, 78);
+            layoutControlItem24.Location = new System.Drawing.Point(644, 78);
             layoutControlItem24.Name = "layoutControlItem24";
-            layoutControlItem24.Size = new System.Drawing.Size(493, 24);
+            layoutControlItem24.Size = new System.Drawing.Size(342, 24);
             layoutControlItem24.Text = "Modul Name";
             // 
             // layoutControlItem25
             // 
             layoutControlItem25.Control = txtModulNamepace;
-            layoutControlItem25.Location = new System.Drawing.Point(0, 78);
+            layoutControlItem25.Location = new System.Drawing.Point(307, 78);
             layoutControlItem25.Name = "layoutControlItem25";
-            layoutControlItem25.Size = new System.Drawing.Size(493, 24);
+            layoutControlItem25.Size = new System.Drawing.Size(337, 24);
             layoutControlItem25.Text = "Modul Namespace";
             // 
             // layoutControlItem23
             // 
             layoutControlItem23.Control = txtEntitynamePlural;
-            layoutControlItem23.Location = new System.Drawing.Point(493, 193);
+            layoutControlItem23.Location = new System.Drawing.Point(493, 189);
             layoutControlItem23.Name = "layoutControlItem23";
             layoutControlItem23.Size = new System.Drawing.Size(493, 24);
             layoutControlItem23.Text = "Entityname Plural";
@@ -872,6 +877,23 @@
             textEdit1.Name = "textEdit1";
             textEdit1.Size = new System.Drawing.Size(100, 20);
             textEdit1.TabIndex = 0;
+            // 
+            // txtRootNameSpace
+            // 
+            txtRootNameSpace.EditValue = "FSH";
+            txtRootNameSpace.Location = new System.Drawing.Point(151, 90);
+            txtRootNameSpace.Name = "txtRootNameSpace";
+            txtRootNameSpace.Size = new System.Drawing.Size(164, 20);
+            txtRootNameSpace.StyleController = layoutControl1;
+            txtRootNameSpace.TabIndex = 15;
+            // 
+            // layoutControlItem28
+            // 
+            layoutControlItem28.Control = txtRootNameSpace;
+            layoutControlItem28.Location = new System.Drawing.Point(0, 78);
+            layoutControlItem28.Name = "layoutControlItem28";
+            layoutControlItem28.Size = new System.Drawing.Size(307, 24);
+            layoutControlItem28.Text = "Root Namespace";
             // 
             // frmMain
             // 
@@ -958,6 +980,8 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem26).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem27).EndInit();
             ((System.ComponentModel.ISupportInitialize)textEdit1.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtRootNameSpace.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem28).EndInit();
             ResumeLayout(false);
         }
 
@@ -1037,6 +1061,8 @@
         private DevExpress.XtraEditors.TextEdit txtOutputPath;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem26;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem27;
+        private DevExpress.XtraEditors.TextEdit txtRootNameSpace;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
     }
 }
 

@@ -129,6 +129,7 @@ namespace CodeGen
             BuilderParams builderParams = new BuilderParams
             {
                 ModuleName = txtModulName.Text,
+                Root_Namespace = txtRootNameSpace.Text,
                 Module_Namespace = txtModulNamepace.Text,
                 EntitySet = txtEntitynamePlural.Text,
                 Entity = ((Type)cbEntity.SelectedItem).Name,

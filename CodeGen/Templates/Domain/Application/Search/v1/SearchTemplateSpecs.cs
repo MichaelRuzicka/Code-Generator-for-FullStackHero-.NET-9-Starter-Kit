@@ -1,10 +1,10 @@
 ﻿using Ardalis.Specification;
-using FSH.Framework.Core.Paging;
-using FSH.Framework.Core.Specifications;
-using [Module_Namespace].[Module].Application.[EntitySet].Get.v1;
-using [Module_Namespace].[Module].Domain;
+using [Root_Namespace].Framework.Core.Paging;
+using [Root_Namespace].Framework.Core.Specifications;
+using [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].Get.v1;
+using [Root_Namespace].[Module_Namespace].[Module].Domain;
 
-namespace [Module_Namespace].[Module].Application.[EntitySet].Search.v1;
+namespace [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].Search.v1;
 public class Search[Entity]Specs : EntitiesByPaginationFilterSpec<[Entity], [Entity]Response>
 {
     public Search[Entity]Specs(Search[EntitySet]Command command)

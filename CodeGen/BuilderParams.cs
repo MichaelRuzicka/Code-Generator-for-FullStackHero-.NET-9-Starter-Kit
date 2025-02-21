@@ -17,6 +17,8 @@ namespace CodeGen
         private List<PropertyInfo> propertyInfos;
 
         public string ModuleName { get; set; }
+
+        public string Root_Namespace { get; set; }
         public string Module_Namespace { get; set; }
         public string EntitySet { get; set; }
         public string Entity
