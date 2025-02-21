@@ -13,9 +13,9 @@ public sealed class Update[Entity]Handler(ILogger<Update[Entity]Handler> logger,
     {
         ArgumentNullException.ThrowIfNull(request);
 
-        var[Entity_] = await repository.GetByIdAsync(request.Id, cancellationToken);
+        var [Entity_] = await repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = [Entity_] ?? throw new[Entity]NotFoundException(request.Id);
+        _ = [Entity_] ?? throw new [Entity]NotFoundException(request.Id);
 
         var updated[Entity] = [Entity_].Update([RequestFields]);
 

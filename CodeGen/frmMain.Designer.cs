@@ -707,6 +707,7 @@
             // 
             // btnBuildOutputDir
             // 
+            btnBuildOutputDir.Enabled = false;
             btnBuildOutputDir.Location = new System.Drawing.Point(757, 681);
             btnBuildOutputDir.Name = "btnBuildOutputDir";
             btnBuildOutputDir.Size = new System.Drawing.Size(107, 22);
@@ -717,6 +718,7 @@
             // 
             // btnBuildProject
             // 
+            btnBuildProject.Enabled = false;
             btnBuildProject.Location = new System.Drawing.Point(881, 681);
             btnBuildProject.Name = "btnBuildProject";
             btnBuildProject.Size = new System.Drawing.Size(113, 22);

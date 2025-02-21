@@ -19,14 +19,8 @@ namespace CodeGen
         }
     }
 }
-//[ModuleName] zb.Catalog
-//[Module_Namespace]   Default: FSH.Starter.WebApi.Catalog
-//[EntitySet] Default: Entity Plural zb.Brands
-//[Entity]
-//[Entity_]
-//[Entity_PropertyId]
-//[DataType]
-//[PropertyName] Default: zb.Description
-//[DefaultValue]
+
+
+
 
 //https://stackoverflow.com/questions/51899876/how-to-retrieve-entity-configuration-from-fluent-api

@@ -6,7 +6,6 @@ namespace [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].S
 
 public class Search[EntitySet]Command : PaginationFilter, IRequest<PagedList<[Entity]Response>>
 {
-  [PropertyListing]
-//public string? Name { get; set; }
-//public string? Description { get; set; }
+[PropertyListing]
 }
+

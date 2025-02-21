@@ -39,11 +39,17 @@ namespace CodeGen
         [EnumMember(Value = "[RequestFields]")]
         RequestFields,
 
+        [EnumMember(Value = "[EntityItemFields]")] //zb. customerItem.Name
+        EntityItemFields,
+
         [EnumMember(Value = "[ServiceKey]")]
         ServiceKey,
 
         [EnumMember(Value = "[PropertyListing]")]
         PropertyListing,
+
+        [EnumMember(Value = "[PropertyConstructor]")]
+        PropertyConstructor,
 
         [EnumMember(Value = "//[Routes]")] //Enhance Routes Section in Module
         Routes,

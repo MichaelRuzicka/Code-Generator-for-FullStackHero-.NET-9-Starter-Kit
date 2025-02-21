@@ -11,12 +11,3 @@ namespace CodeGen
         }
     }
 }
-//[Module] zb.Catalog
-//[Module_Namespace]   Default: FSH.Starter.WebApi.Catalog
-//[EntitySet] Default: Entity Plural zb.Brands
-//[Entity]
-//[Entity_]
-//[Entity_PropertyId]
-//[DataType]
-//[PropertyName] Default: zb.Description
-//[DefaultValue]

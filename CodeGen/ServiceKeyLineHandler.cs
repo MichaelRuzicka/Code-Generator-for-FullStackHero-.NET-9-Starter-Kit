@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 
 namespace CodeGen
 {
@@ -11,12 +12,3 @@ namespace CodeGen
         }
     }
 }
-//[ModuleName] zb.Catalog
-//[Module_Namespace]   Default: FSH.Starter.WebApi.Catalog
-//[EntitySet] Default: Entity Plural zb.Brands
-//[Entity]
-//[Entity_]
-//[Entity_PropertyId]
-//[DataType]
-//[PropertyName] Default: zb.Description
-//[DefaultValue]

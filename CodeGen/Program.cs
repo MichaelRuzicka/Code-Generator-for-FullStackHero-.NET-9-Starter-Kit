@@ -43,10 +43,12 @@ namespace CodeGen
                 services.AddTransient<ITemplateLineHandler, EntityLowerCaseLineHandler>();
                 services.AddTransient<ITemplateLineHandler, Entity_PropertyIdLineHandler>();
                 services.AddTransient<ITemplateLineHandler, RequestFieldsLineHandler>();
+                services.AddTransient<ITemplateLineHandler, EntityItemFieldsLineHandler>();
                 services.AddTransient<ITemplateLineHandler, ServiceKeyLineHandler>();
                 services.AddTransient<ITemplateLineHandler, ServicesLineHandler>();
                 services.AddTransient<ITemplateLineHandler, RoutesLineHandler>();
-
+                services.AddTransient<ITemplateLineHandler, PropertyListingLineHandler>();
+                services.AddTransient<ITemplateLineHandler, PropertyConstructorLineHandler>();
                 services.AddTransient<frmMain>();
             });
         }

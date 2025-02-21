@@ -10,18 +10,18 @@ namespace [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].G
 
 public sealed class Get[Entity]Handler([FromKeyedServices("[ServiceKey]")] IReadRepository<[Entity]> repository, ICacheService cache) : IRequestHandler<Get[Entity]Request, [Entity]Response>
 {
-    public async Task<[Entity]Response> Handle(Get[Entity] Request request, CancellationToken cancellationToken)
+    public async Task<[Entity]Response> Handle(Get[Entity]Request request, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(request);
         var item = await cache.GetOrSetAsync(
             $"[Entity_]:{request.Id}",
             async () =>
             {
-                var[Entity_]Item = await repository.GetByIdAsync(request.Id, cancellationToken);
+                var [Entity_]Item = await repository.GetByIdAsync(request.Id, cancellationToken);
 
-                if ([Entity_]Item == null) throw new[Entity]NotFoundException(request.Id);
+                if ([Entity_]Item == null) throw new [Entity]NotFoundException(request.Id);
 
-                return new[Entity]Response(brandItem.Id, [RequestFields]);
+                return new [Entity]Response([Entity_]Item.Id, [EntityItemFields]);
             },
             cancellationToken: cancellationToken);
         return item!;

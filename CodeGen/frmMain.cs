@@ -97,6 +97,8 @@ namespace CodeGen
             cbEntity.Enabled = true;
             txtEntitynamePlural.Enabled = true;
             grpPO.Enabled = true;
+            btnBuildOutputDir.Enabled = true;
+            btnBuildProject.Enabled = true;
         }
 
 

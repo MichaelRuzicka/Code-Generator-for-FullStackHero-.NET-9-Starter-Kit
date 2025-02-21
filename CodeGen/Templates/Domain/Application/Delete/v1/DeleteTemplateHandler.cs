@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].Delete.v1;
 
-public sealed class Delete[Entity]Handler(ILogger<Delete[Entity]Handler> logger,[FromKeyedServices([ServiceKey])] IRepository<[Entity]> repository):IRequestHandler<Delete[Entity]Command>
+public sealed class Delete[Entity]Handler(ILogger<Delete[Entity]Handler> logger,[FromKeyedServices("[ServiceKey]")] IRepository<[Entity]> repository):IRequestHandler<Delete[Entity]Command>
 {
     public async Task Handle(Delete[Entity]Command request, CancellationToken cancellationToken)
     {
