@@ -15,7 +15,7 @@
 <li>Set all Files in Template Directory to Build Action "none" (may git clone do this already for you)</li>
 <li>Write your model & Entity Configuration, remark the QueueDomainEvent call since the model has recursive depencies with the api (QueueDomainEvent) files</li>
 <li>Update Ef Context  </li>
-<li>Buid (Codegen searches for the model in the compiled assembly)  </li>
+<li>Build your project (Codegen searches for the model in the compiled assembly)  </li>
 <li>Rest is self explaining</li>
 </ul>
 <b>Requirements:</b>
