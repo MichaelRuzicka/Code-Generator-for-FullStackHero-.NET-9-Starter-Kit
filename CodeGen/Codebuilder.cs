@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.CodeParser;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -35,16 +36,28 @@ namespace CodeGen
 
         private void TemplateLineReader(string templateFilename)
         {
+            bool RoutesAndRegisterServicesExists = false;
             List<string> newLines = new List<string>();
             using (StreamReader templateFile = new StreamReader(templateFilename))
             {
 
+      
                 int counter = 0;
                 string line;
 
                 while ((line = templateFile.ReadLine()) != null)
                 {
                     Console.WriteLine(line);
+                    if (Params.TemplateName == "RoutesAndRegisterServices")
+                    {
+                        if (line.Contains($"MapGroup(\"{Params.EntitySet.ToLower()}\")"))
+                        {
+                            Console.WriteLine("Skip Templating Service Routes / Register  Section, already exists");
+                            RoutesAndRegisterServicesExists = true;
+                            break;
+                        }
+                    }
+
                     ProcessTemplateLine(ref line);
                     newLines.Add(line);
                     Console.WriteLine(line);
@@ -52,6 +65,12 @@ namespace CodeGen
                 }
                 templateFile.Close();
                 Console.WriteLine($"{counter} lines processed.");
+            }
+
+            if (RoutesAndRegisterServicesExists)
+            {
+                Console.WriteLine("Skip Writing to file, Service Routes / Register  Section, already exists");
+                return;
             }
 
             if (Params.TemplateName == "RoutesAndRegisterServices")
