@@ -34,12 +34,13 @@
         {
             components = new System.ComponentModel.Container();
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            txtRootNameSpace = new DevExpress.XtraEditors.TextEdit();
             btnOutputPath = new DevExpress.XtraEditors.SimpleButton();
             txtOutputPath = new DevExpress.XtraEditors.TextEdit();
             txtEntitynamePlural = new DevExpress.XtraEditors.TextEdit();
             txtModulNamepace = new DevExpress.XtraEditors.TextEdit();
             txtModulName = new DevExpress.XtraEditors.TextEdit();
-            groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            grpPO = new DevExpress.XtraEditors.GroupControl();
             layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             groupControl4 = new DevExpress.XtraEditors.GroupControl();
             chkSelectAllApp = new DevExpress.XtraEditors.CheckEdit();
@@ -82,8 +83,8 @@
             btnFrameWork = new DevExpress.XtraEditors.SimpleButton();
             txtFileNameCore = new DevExpress.XtraEditors.TextEdit();
             btnParse = new DevExpress.XtraEditors.SimpleButton();
-            btnCreate = new DevExpress.XtraEditors.SimpleButton();
-            simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            btnBuildOutputDir = new DevExpress.XtraEditors.SimpleButton();
+            btnBuildProject = new DevExpress.XtraEditors.SimpleButton();
             cbEntity = new DevExpress.XtraEditors.ComboBoxEdit();
             btnLoadDomain = new DevExpress.XtraEditors.SimpleButton();
             txtFileNameDomain = new DevExpress.XtraEditors.TextEdit();
@@ -106,18 +107,18 @@
             layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
+            layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(components);
             textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            txtRootNameSpace = new DevExpress.XtraEditors.TextEdit();
-            layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)txtRootNameSpace.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtOutputPath.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtEntitynamePlural.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtModulNamepace.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtModulName.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)groupControl2).BeginInit();
-            groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)grpPO).BeginInit();
+            grpPO.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)layoutControl2).BeginInit();
             layoutControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)groupControl4).BeginInit();
@@ -186,9 +187,8 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem23).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem26).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem27).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textEdit1.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)txtRootNameSpace.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem28).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)textEdit1.Properties).BeginInit();
             SuspendLayout();
             // 
             // layoutControl1
@@ -199,12 +199,12 @@
             layoutControl1.Controls.Add(txtEntitynamePlural);
             layoutControl1.Controls.Add(txtModulNamepace);
             layoutControl1.Controls.Add(txtModulName);
-            layoutControl1.Controls.Add(groupControl2);
+            layoutControl1.Controls.Add(grpPO);
             layoutControl1.Controls.Add(btnFrameWork);
             layoutControl1.Controls.Add(txtFileNameCore);
             layoutControl1.Controls.Add(btnParse);
-            layoutControl1.Controls.Add(btnCreate);
-            layoutControl1.Controls.Add(simpleButton1);
+            layoutControl1.Controls.Add(btnBuildOutputDir);
+            layoutControl1.Controls.Add(btnBuildProject);
             layoutControl1.Controls.Add(cbEntity);
             layoutControl1.Controls.Add(btnLoadDomain);
             layoutControl1.Controls.Add(txtFileNameDomain);
@@ -215,6 +215,15 @@
             layoutControl1.Size = new System.Drawing.Size(1006, 715);
             layoutControl1.TabIndex = 4;
             layoutControl1.Text = "layoutControl1";
+            // 
+            // txtRootNameSpace
+            // 
+            txtRootNameSpace.EditValue = "FSH";
+            txtRootNameSpace.Location = new System.Drawing.Point(151, 90);
+            txtRootNameSpace.Name = "txtRootNameSpace";
+            txtRootNameSpace.Size = new System.Drawing.Size(164, 20);
+            txtRootNameSpace.StyleController = layoutControl1;
+            txtRootNameSpace.TabIndex = 15;
             // 
             // btnOutputPath
             // 
@@ -238,6 +247,7 @@
             // 
             // txtEntitynamePlural
             // 
+            txtEntitynamePlural.Enabled = false;
             txtEntitynamePlural.Location = new System.Drawing.Point(644, 201);
             txtEntitynamePlural.Name = "txtEntitynamePlural";
             txtEntitynamePlural.Size = new System.Drawing.Size(350, 20);
@@ -262,14 +272,15 @@
             txtModulName.StyleController = layoutControl1;
             txtModulName.TabIndex = 10;
             // 
-            // groupControl2
+            // grpPO
             // 
-            groupControl2.Controls.Add(layoutControl2);
-            groupControl2.Location = new System.Drawing.Point(12, 225);
-            groupControl2.Name = "groupControl2";
-            groupControl2.Size = new System.Drawing.Size(982, 452);
-            groupControl2.TabIndex = 7;
-            groupControl2.Text = "Select Propertys & Options";
+            grpPO.Controls.Add(layoutControl2);
+            grpPO.Enabled = false;
+            grpPO.Location = new System.Drawing.Point(12, 225);
+            grpPO.Name = "grpPO";
+            grpPO.Size = new System.Drawing.Size(982, 452);
+            grpPO.TabIndex = 7;
+            grpPO.Text = "Select Propertys && Build Options";
             // 
             // layoutControl2
             // 
@@ -665,24 +676,25 @@
             btnParse.Text = "Parse Assembly";
             btnParse.Click += btnParse_Click;
             // 
-            // btnCreate
+            // btnBuildOutputDir
             // 
-            btnCreate.Location = new System.Drawing.Point(757, 681);
-            btnCreate.Name = "btnCreate";
-            btnCreate.Size = new System.Drawing.Size(107, 22);
-            btnCreate.StyleController = layoutControl1;
-            btnCreate.TabIndex = 8;
-            btnCreate.Text = "Write to Output Dir";
-            btnCreate.Click += btnCreate_Click;
+            btnBuildOutputDir.Location = new System.Drawing.Point(757, 681);
+            btnBuildOutputDir.Name = "btnBuildOutputDir";
+            btnBuildOutputDir.Size = new System.Drawing.Size(107, 22);
+            btnBuildOutputDir.StyleController = layoutControl1;
+            btnBuildOutputDir.TabIndex = 8;
+            btnBuildOutputDir.Text = "Write to Output Dir";
+            btnBuildOutputDir.Click += btnBuildOutputDir_Click;
             // 
-            // simpleButton1
+            // btnBuildProject
             // 
-            simpleButton1.Location = new System.Drawing.Point(881, 681);
-            simpleButton1.Name = "simpleButton1";
-            simpleButton1.Size = new System.Drawing.Size(113, 22);
-            simpleButton1.StyleController = layoutControl1;
-            simpleButton1.TabIndex = 9;
-            simpleButton1.Text = "Write to Project";
+            btnBuildProject.Location = new System.Drawing.Point(881, 681);
+            btnBuildProject.Name = "btnBuildProject";
+            btnBuildProject.Size = new System.Drawing.Size(113, 22);
+            btnBuildProject.StyleController = layoutControl1;
+            btnBuildProject.TabIndex = 9;
+            btnBuildProject.Text = "Write to Project";
+            btnBuildProject.Click += btnBuildProject_Click;
             // 
             // cbEntity
             // 
@@ -752,7 +764,7 @@
             // 
             // layoutControlItem5
             // 
-            layoutControlItem5.Control = simpleButton1;
+            layoutControlItem5.Control = btnBuildProject;
             layoutControlItem5.Location = new System.Drawing.Point(869, 669);
             layoutControlItem5.Name = "layoutControlItem5";
             layoutControlItem5.Size = new System.Drawing.Size(117, 26);
@@ -760,7 +772,7 @@
             // 
             // layoutControlItem6
             // 
-            layoutControlItem6.Control = btnCreate;
+            layoutControlItem6.Control = btnBuildOutputDir;
             layoutControlItem6.Location = new System.Drawing.Point(745, 669);
             layoutControlItem6.Name = "layoutControlItem6";
             layoutControlItem6.Size = new System.Drawing.Size(111, 26);
@@ -813,7 +825,7 @@
             // 
             // layoutControlItem10
             // 
-            layoutControlItem10.Control = groupControl2;
+            layoutControlItem10.Control = grpPO;
             layoutControlItem10.Location = new System.Drawing.Point(0, 213);
             layoutControlItem10.Name = "layoutControlItem10";
             layoutControlItem10.Size = new System.Drawing.Size(986, 456);
@@ -867,6 +879,14 @@
             layoutControlItem27.Size = new System.Drawing.Size(78, 26);
             layoutControlItem27.TextVisible = false;
             // 
+            // layoutControlItem28
+            // 
+            layoutControlItem28.Control = txtRootNameSpace;
+            layoutControlItem28.Location = new System.Drawing.Point(0, 78);
+            layoutControlItem28.Name = "layoutControlItem28";
+            layoutControlItem28.Size = new System.Drawing.Size(307, 24);
+            layoutControlItem28.Text = "Root Namespace";
+            // 
             // xtraOpenFileDialog1
             // 
             xtraOpenFileDialog1.FileName = "xtraOpenFileDialog1";
@@ -878,23 +898,6 @@
             textEdit1.Size = new System.Drawing.Size(100, 20);
             textEdit1.TabIndex = 0;
             // 
-            // txtRootNameSpace
-            // 
-            txtRootNameSpace.EditValue = "FSH";
-            txtRootNameSpace.Location = new System.Drawing.Point(151, 90);
-            txtRootNameSpace.Name = "txtRootNameSpace";
-            txtRootNameSpace.Size = new System.Drawing.Size(164, 20);
-            txtRootNameSpace.StyleController = layoutControl1;
-            txtRootNameSpace.TabIndex = 15;
-            // 
-            // layoutControlItem28
-            // 
-            layoutControlItem28.Control = txtRootNameSpace;
-            layoutControlItem28.Location = new System.Drawing.Point(0, 78);
-            layoutControlItem28.Name = "layoutControlItem28";
-            layoutControlItem28.Size = new System.Drawing.Size(307, 24);
-            layoutControlItem28.Text = "Root Namespace";
-            // 
             // frmMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -905,12 +908,13 @@
             Text = "Codegen 0.1 (C) 2025 MiruLogic";
             ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
             layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)txtRootNameSpace.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtOutputPath.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtEntitynamePlural.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtModulNamepace.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtModulName.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)groupControl2).EndInit();
-            groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)grpPO).EndInit();
+            grpPO.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)layoutControl2).EndInit();
             layoutControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)groupControl4).EndInit();
@@ -979,9 +983,8 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem23).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem26).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem27).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textEdit1.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)txtRootNameSpace.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem28).EndInit();
+            ((System.ComponentModel.ISupportInitialize)textEdit1.Properties).EndInit();
             ResumeLayout(false);
         }
 
@@ -996,8 +999,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraEditors.XtraOpenFileDialog xtraOpenFileDialog1;
-        private DevExpress.XtraEditors.SimpleButton btnCreate;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton btnBuildOutputDir;
+        private DevExpress.XtraEditors.SimpleButton btnBuildProject;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
@@ -1010,7 +1013,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.GroupControl grpPO;
         private DevExpress.XtraLayout.LayoutControl layoutControl2;
         private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;

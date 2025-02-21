@@ -80,7 +80,8 @@ namespace CodeGen
             }
             cbEntity.Properties.Items.AddRange(modelAssembly.DefinedTypes.Where(dt => dt.ImplementedInterfaces.Any(ii => ii.Name.Contains("IEntity"))).ToList());
             cbEntity.Enabled = true;
-
+            txtEntitynamePlural.Enabled = true;
+            grpPO.Enabled = true;
         }
 
 
@@ -118,9 +119,9 @@ namespace CodeGen
             chkMediatRUpdate.Checked = chkSelectAllApp.Checked;
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
+        private void btnBuildOutputDir_Click(object sender, EventArgs e)
         {
-
+            
             List<PropertyInfo> propertyInfos = new List<PropertyInfo>();
             foreach (CheckedListBoxItem item in checkedListBoxControl1.CheckedItems)
                 propertyInfos.Add(item.Value as PropertyInfo);
@@ -313,12 +314,19 @@ namespace CodeGen
                     codebuilder.BuildAsync();
                     break;
 
-                    
+
 
                 default:
                     break;
             }
         }
+
+
+        private void btnBuildProject_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private static string GetTemplateDirectory()
         {
             return Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Templates";
@@ -363,6 +371,7 @@ namespace CodeGen
                 txtOutputPath.Text = outputPath.GetValue("OutputPath", defaultOutputPath)?.ToString();
             }
         }
+
 
     }
 }
