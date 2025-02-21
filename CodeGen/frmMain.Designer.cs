@@ -34,6 +34,8 @@
         {
             components = new System.ComponentModel.Container();
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            btnProjectApiPath = new DevExpress.XtraEditors.SimpleButton();
+            txtProjectApiPath = new DevExpress.XtraEditors.TextEdit();
             txtRootNameSpace = new DevExpress.XtraEditors.TextEdit();
             btnOutputPath = new DevExpress.XtraEditors.SimpleButton();
             txtOutputPath = new DevExpress.XtraEditors.TextEdit();
@@ -108,14 +110,13 @@
             layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
+            layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
+            layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(components);
             textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            txtProjectApiPath = new DevExpress.XtraEditors.TextEdit();
-            layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
-            btnProjectApiPath = new DevExpress.XtraEditors.SimpleButton();
-            layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)txtProjectApiPath.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtRootNameSpace.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtOutputPath.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtEntitynamePlural.Properties).BeginInit();
@@ -192,10 +193,9 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem26).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem27).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem28).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textEdit1.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)txtProjectApiPath.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem29).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem30).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)textEdit1.Properties).BeginInit();
             SuspendLayout();
             // 
             // layoutControl1
@@ -224,6 +224,26 @@
             layoutControl1.Size = new System.Drawing.Size(1006, 715);
             layoutControl1.TabIndex = 4;
             layoutControl1.Text = "layoutControl1";
+            // 
+            // btnProjectApiPath
+            // 
+            btnProjectApiPath.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            btnProjectApiPath.Appearance.Options.UseFont = true;
+            btnProjectApiPath.Location = new System.Drawing.Point(943, 90);
+            btnProjectApiPath.Name = "btnProjectApiPath";
+            btnProjectApiPath.Size = new System.Drawing.Size(51, 22);
+            btnProjectApiPath.StyleController = layoutControl1;
+            btnProjectApiPath.TabIndex = 17;
+            btnProjectApiPath.Text = "...";
+            btnProjectApiPath.Click += btnProjectApiPath_Click;
+            // 
+            // txtProjectApiPath
+            // 
+            txtProjectApiPath.Location = new System.Drawing.Point(151, 90);
+            txtProjectApiPath.Name = "txtProjectApiPath";
+            txtProjectApiPath.Size = new System.Drawing.Size(788, 20);
+            txtProjectApiPath.StyleController = layoutControl1;
+            txtProjectApiPath.TabIndex = 16;
             // 
             // txtRootNameSpace
             // 
@@ -563,7 +583,7 @@
             // 
             chkRoutesRegister.Location = new System.Drawing.Point(12, 36);
             chkRoutesRegister.Name = "chkRoutesRegister";
-            chkRoutesRegister.Properties.Caption = "Routes && Register";
+            chkRoutesRegister.Properties.Caption = "Add Routes && Register Catalog Services in Module";
             chkRoutesRegister.Size = new System.Drawing.Size(523, 20);
             chkRoutesRegister.StyleController = layoutControl3;
             chkRoutesRegister.TabIndex = 7;
@@ -896,6 +916,22 @@
             layoutControlItem28.Size = new System.Drawing.Size(307, 24);
             layoutControlItem28.Text = "Root Namespace";
             // 
+            // layoutControlItem29
+            // 
+            layoutControlItem29.Control = txtProjectApiPath;
+            layoutControlItem29.Location = new System.Drawing.Point(0, 78);
+            layoutControlItem29.Name = "layoutControlItem29";
+            layoutControlItem29.Size = new System.Drawing.Size(931, 26);
+            layoutControlItem29.Text = "Project Api Path";
+            // 
+            // layoutControlItem30
+            // 
+            layoutControlItem30.Control = btnProjectApiPath;
+            layoutControlItem30.Location = new System.Drawing.Point(931, 78);
+            layoutControlItem30.Name = "layoutControlItem30";
+            layoutControlItem30.Size = new System.Drawing.Size(55, 26);
+            layoutControlItem30.TextVisible = false;
+            // 
             // xtraOpenFileDialog1
             // 
             xtraOpenFileDialog1.FileName = "xtraOpenFileDialog1";
@@ -907,42 +943,6 @@
             textEdit1.Size = new System.Drawing.Size(100, 20);
             textEdit1.TabIndex = 0;
             // 
-            // txtProjectApiPath
-            // 
-            txtProjectApiPath.Location = new System.Drawing.Point(151, 90);
-            txtProjectApiPath.Name = "txtProjectApiPath";
-            txtProjectApiPath.Size = new System.Drawing.Size(788, 20);
-            txtProjectApiPath.StyleController = layoutControl1;
-            txtProjectApiPath.TabIndex = 16;
-            // 
-            // layoutControlItem29
-            // 
-            layoutControlItem29.Control = txtProjectApiPath;
-            layoutControlItem29.Location = new System.Drawing.Point(0, 78);
-            layoutControlItem29.Name = "layoutControlItem29";
-            layoutControlItem29.Size = new System.Drawing.Size(931, 26);
-            layoutControlItem29.Text = "Project Api Path";
-            // 
-            // btnProjectApiPath
-            // 
-            btnProjectApiPath.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            btnProjectApiPath.Appearance.Options.UseFont = true;
-            btnProjectApiPath.Location = new System.Drawing.Point(943, 90);
-            btnProjectApiPath.Name = "btnProjectApiPath";
-            btnProjectApiPath.Size = new System.Drawing.Size(51, 22);
-            btnProjectApiPath.StyleController = layoutControl1;
-            btnProjectApiPath.TabIndex = 17;
-            btnProjectApiPath.Text = "...";
-            btnProjectApiPath.Click += btnProjectApiPath_Click;
-            // 
-            // layoutControlItem30
-            // 
-            layoutControlItem30.Control = btnProjectApiPath;
-            layoutControlItem30.Location = new System.Drawing.Point(931, 78);
-            layoutControlItem30.Name = "layoutControlItem30";
-            layoutControlItem30.Size = new System.Drawing.Size(55, 26);
-            layoutControlItem30.TextVisible = false;
-            // 
             // frmMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -953,6 +953,7 @@
             Text = "Codegen 0.1 (C) 2025 MiruLogic";
             ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
             layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)txtProjectApiPath.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtRootNameSpace.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtOutputPath.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtEntitynamePlural.Properties).EndInit();
@@ -1029,10 +1030,9 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem26).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem27).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem28).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textEdit1.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)txtProjectApiPath.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem29).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem30).EndInit();
+            ((System.ComponentModel.ISupportInitialize)textEdit1.Properties).EndInit();
             ResumeLayout(false);
         }
 

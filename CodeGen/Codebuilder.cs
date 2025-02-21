@@ -53,10 +53,21 @@ namespace CodeGen
                 templateFile.Close();
                 Console.WriteLine($"{counter} lines processed.");
             }
-            if (Params.OutputDestination == OutputEnum.OutputDir)
-                TemplateLineWriterOutputDir(newLines.ToArray(), Path.GetFileName(templateFilename).Replace("Template", Params.Entity));
+
+            if (Params.TemplateName == "RoutesAndRegisterServices")
+            {
+                if (Params.OutputDestination == OutputEnum.OutputDir)
+                    TemplateLineWriterOutputDir(newLines.ToArray(), Path.GetFileName(templateFilename).Replace("Template", Params.ModuleName));
+                else
+                    TemplateLineWriterProjectDir(newLines.ToArray(), Path.GetFileName(templateFilename).Replace("Template", Params.ModuleName));
+            }
             else
-                TemplateLineWriterProjectDir(newLines.ToArray(), Path.GetFileName(templateFilename).Replace("Template", Params.Entity));
+            {
+                if (Params.OutputDestination == OutputEnum.OutputDir)
+                    TemplateLineWriterOutputDir(newLines.ToArray(), Path.GetFileName(templateFilename).Replace("Template", Params.Entity));
+                else
+                    TemplateLineWriterProjectDir(newLines.ToArray(), Path.GetFileName(templateFilename).Replace("Template", Params.Entity));
+            }
         }
 
 
@@ -80,11 +91,17 @@ namespace CodeGen
         private void TemplateLineWriterProjectDir(string[] newlines, string fileName)
         {
             string folder = Params.OutputPath;
-            string templateFileName = Path.GetFileName(fileName).Replace(Params.Entity, "Template"); //Rename Back since switch/case cant be dynamic
+            string templateFileName = string.Empty;
+
+            if (Params.TemplateName == "RoutesAndRegisterServices")
+                templateFileName = Path.GetFileName(fileName).Replace(Params.ModuleName, "Template"); //Rename Back since switch/case cant be dynamic
+            else
+                templateFileName = Path.GetFileName(fileName).Replace(Params.Entity, "Template"); //Rename Back since switch/case cant be dynamic
             string projectPath = string.Empty;
             switch (templateFileName)
             {
-                #region WebApi/Modules/[Module]/[Module].Application/[EntitySet]/
+                #region Application
+
                 //SolutionPath: WebApi/Modules/[Module]/[Module].Application/[EntitySet]/
 
                 //FilePath: api\modules\[Module]\[Module].Application\[EntitySet]\
@@ -142,6 +159,43 @@ namespace CodeGen
                     File.WriteAllLines($"{projectPath}{fileName}", newlines);
                     break;
                 #endregion
+
+
+                #region Domain
+                //Domain/Events/
+                case "TemplateCreated.cs":
+                case "TemplateUpdated.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Domain\\Events\\";
+                    Directory.CreateDirectory(Path.GetFullPath(projectPath));
+                    File.WriteAllLines($"{projectPath}{fileName}", newlines);
+                    break;
+
+                //Domain/Exceptions/
+                case "TemplateNotFoundException.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Domain\\Exceptions\\";
+                    Directory.CreateDirectory(Path.GetFullPath(projectPath));
+                    File.WriteAllLines($"{projectPath}{fileName}", newlines);
+                    break;
+                #endregion
+
+                //Infrastructure/Endpoints/v1/
+                case "CreateTemplateEndpoint.cs":
+                case "DeleteTemplateEndpoint.cs":
+                case "GetTemplateEndpoint.cs":
+                case "SearchTemplateEndpoint.cs":
+                case "UpdateTemplateEndpoint.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Infrastructure\\Endpoints\\v1\\";
+                    Directory.CreateDirectory(Path.GetFullPath(projectPath));
+                    File.WriteAllLines($"{projectPath}{fileName}", newlines);
+                    break;
+
+                //Infrastructure/
+                case "TemplateModule.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Infrastructure\\";
+                    Directory.CreateDirectory(Path.GetFullPath(projectPath));
+                    File.WriteAllLines($"{projectPath}{fileName}", newlines);
+                    break;
+
 
                 default:
                     break;

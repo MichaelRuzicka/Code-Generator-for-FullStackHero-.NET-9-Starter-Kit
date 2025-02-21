@@ -11,6 +11,7 @@ using DevExpress.XtraEditors.Controls;
 using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using DevExpress.XtraTreeList;
+using DevExpress.CodeParser;
 
 namespace CodeGen
 {
@@ -174,7 +175,7 @@ namespace CodeGen
 
             if (chkRoutesRegister.Checked)
             {
-                ProcessTemplate(builderParams, "RoutesRegister");
+                ProcessTemplate(builderParams, "RoutesAndRegisterServices");
             }
 
             if (chkDomainEvents.Checked)
@@ -330,11 +331,18 @@ namespace CodeGen
                     codebuilder.Build();
                     break;
 
-                case "RoutesRegister":
-                    WorkingTemplateDirectory = TemplateRootDirectory + @"\Infrastructure\";
+                case "RoutesAndRegisterServices":
+                    if (builderParams.OutputDestination == OutputEnum.ProjectDir) //In Project Output Mode the RoutesRegister Template is read & modified from (real) Solution not Template Directory
+                        WorkingTemplateDirectory = $"{builderParams.OutputPath}\\Modules\\{builderParams.ModuleName}\\{builderParams.ModuleName}.Infrastructure\\";
+                    else
+                        WorkingTemplateDirectory = TemplateRootDirectory + @"\Infrastructure\";
                     builderParams.TemplateName = templateName;
                     builderParams.TemplatePaths.Clear();
-                    builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "TemplateModule.cs");
+
+                    if (builderParams.OutputDestination == OutputEnum.ProjectDir)
+                        builderParams.TemplatePaths.Add(WorkingTemplateDirectory + $"{builderParams.ModuleName}Module.cs");
+                    else
+                        builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "TemplateModule.cs");
                     codebuilder.Params = builderParams;
                     codebuilder.Build();
                     break;

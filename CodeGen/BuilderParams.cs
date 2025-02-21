@@ -11,7 +11,7 @@ namespace CodeGen
     {
         private string entity;
 
-        public string TemplateName { get; set; }
+        public string TemplateName { get; set; } //zb: MediatRCreate
         public List<string> TemplatePaths { get; set; } = new List<string>();
 
         private List<PropertyInfo> propertyInfos;
