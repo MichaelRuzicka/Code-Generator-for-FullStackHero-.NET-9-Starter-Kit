@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CodeGen
 {
-    public class Codebuilder : ICodebuilder
+    public class Codebuilder
     {
         BuilderParams _BuilderParams;
         private readonly IEnumerable<ITemplateLineHandler> _LineHandlers;
@@ -20,7 +20,7 @@ namespace CodeGen
         }
 
 
-        public Task<bool> BuildAsync()
+        public void Build()
         {
             if (Params == null)
             {
@@ -31,8 +31,6 @@ namespace CodeGen
             {
                 TemplateLineReader(templateFilename); //Read Tenplate
             }
-
-            return Task.FromResult(true);
         }
 
         private void TemplateLineReader(string templateFilename)
@@ -55,8 +53,10 @@ namespace CodeGen
                 templateFile.Close();
                 Console.WriteLine($"{counter} lines processed.");
             }
-            TemplateLineWriter(newLines.ToArray(),Path.GetFileName(templateFilename)
-                .Replace("Template",Params.Entity));
+            if (Params.OutputDestination == OutputEnum.OutputDir)
+                TemplateLineWriterOutputDir(newLines.ToArray(), Path.GetFileName(templateFilename).Replace("Template", Params.Entity));
+            else
+                TemplateLineWriterProjectDir(newLines.ToArray(), Path.GetFileName(templateFilename).Replace("Template", Params.Entity));
         }
 
 
@@ -69,25 +69,88 @@ namespace CodeGen
             }
         }
 
-
-
-
-        private void TemplateLineWriter(string[] newlines, string fileName)
+        private void TemplateLineWriterOutputDir(string[] newlines, string templateFileNamePath)
         {
             string folder = Params.OutputPath;
 
-            string fullPath = folder + @"\" + Path.GetFileName(fileName);
+            string fullPath = folder + @"\" + Path.GetFileName(templateFileNamePath);
             File.WriteAllLines(fullPath, newlines);
         }
 
+        private void TemplateLineWriterProjectDir(string[] newlines, string fileName)
+        {
+            string folder = Params.OutputPath;
+            string templateFileName = Path.GetFileName(fileName).Replace(Params.Entity, "Template"); //Rename Back since switch/case cant be dynamic
+            string projectPath = string.Empty;
+            switch (templateFileName)
+            {
+                #region WebApi/Modules/[Module]/[Module].Application/[EntitySet]/
+                //SolutionPath: WebApi/Modules/[Module]/[Module].Application/[EntitySet]/
+
+                //FilePath: api\modules\[Module]\[Module].Application\[EntitySet]\
+
+                //Create/v1/
+                case "CreateTemplateCommand.cs":
+                case "CreateTemplateCommandValidator.cs":
+                case "CreateTemplateHandler.cs":
+                case "CreateTemplateResponse.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Application\\{Params.EntitySet}\\Create\\v1\\";
+                    Directory.CreateDirectory(Path.GetFullPath(projectPath));
+                    File.WriteAllLines($"{projectPath}{fileName}", newlines);
+                    break;
+
+                //Delete/v1/
+                case "DeleteTemplateCommand.cs":
+                case "DeleteTemplateHandler.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Application\\{Params.EntitySet}\\Delete\\v1\\";
+                    Directory.CreateDirectory(Path.GetFullPath(projectPath));
+                    File.WriteAllLines($"{projectPath}{fileName}", newlines);
+                    break;
+
+                //EventHandlers/v1/
+                case "TemplateCreatedEventHandler.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Application\\{Params.EntitySet}\\EventHandlers\\v1\\";
+                    Directory.CreateDirectory(Path.GetFullPath(projectPath));
+                    File.WriteAllLines($"{projectPath}{fileName}", newlines);
+                    break;
+
+                //Get/v1/
+                case "GetTemplateHandler.cs":
+                case "GetTemplateRequest.cs":
+                case "TemplateResponse.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Application\\{Params.EntitySet}\\Get\\v1\\";
+                    Directory.CreateDirectory(Path.GetFullPath(projectPath));
+                    File.WriteAllLines($"{projectPath}{fileName}", newlines);
+                    break;
+
+                //Search/v1/
+                case "SearchTemplateCommand.cs":
+                case "SearchTemplateHandler.cs":
+                case "SearchTemplateSpecs.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Application\\{Params.EntitySet}\\Search\\v1\\";
+                    Directory.CreateDirectory(Path.GetFullPath(projectPath));
+                    File.WriteAllLines($"{projectPath}{fileName}", newlines);
+                    break;
+
+                //Update/v1/
+                case "UpdateTemplateCommand.cs":
+                case "UpdateTemplateCommandValidator.cs":
+                case "UpdateTemplateHandler.cs":
+                case "UpdateTemplateResponse.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Application\\{Params.EntitySet}\\Update\\v1\\";
+                    Directory.CreateDirectory(Path.GetFullPath(projectPath));
+                    File.WriteAllLines($"{projectPath}{fileName}", newlines);
+                    break;
+                #endregion
+
+                default:
+                    break;
+            }
+
+
+
+        }
+
+
     }
 }
-//[Module] zb.Catalog
-//[Module_Namespace]   Default: FSH.Starter.WebApi.Catalog
-//[EntitySet] Default: Entity Plural zb.Brands
-//[Entity]
-//[Entity_]
-//[Entity_PropertyId]
-//[DataType]
-//[PropertyName] Default: zb.Description
-//[DefaultValue]

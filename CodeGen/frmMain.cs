@@ -53,13 +53,27 @@ namespace CodeGen
         {
             XtraFolderBrowserDialog xtraFolderBrowserDialog = new XtraFolderBrowserDialog();
             xtraFolderBrowserDialog.SelectedPath = txtOutputPath.Text;
+            xtraFolderBrowserDialog.KeepPosition = true;
+            xtraFolderBrowserDialog.ShowDragDropConfirmation = true;
+            xtraFolderBrowserDialog.StartPosition = FormStartPosition.CenterParent;
             xtraFolderBrowserDialog.ShowDialog();
             txtOutputPath.Text = xtraFolderBrowserDialog.SelectedPath;
             var subkey = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\MiruLogic\CodeGen");
             subkey.SetValue("OutputPath", txtOutputPath.Text);
         }
 
-
+        private void btnProjectApiPath_Click(object sender, EventArgs e)
+        {
+            XtraFolderBrowserDialog xtraFolderBrowserDialog = new XtraFolderBrowserDialog();
+            xtraFolderBrowserDialog.SelectedPath = txtProjectApiPath.Text;
+            xtraFolderBrowserDialog.KeepPosition = true;
+            xtraFolderBrowserDialog.ShowDragDropConfirmation = true;
+            xtraFolderBrowserDialog.StartPosition = FormStartPosition.CenterParent;
+            xtraFolderBrowserDialog.ShowDialog();
+            txtProjectApiPath.Text = xtraFolderBrowserDialog.SelectedPath;
+            var subkey = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\MiruLogic\CodeGen");
+            subkey.SetValue("ProjectApiPath", txtProjectApiPath.Text);
+        }
         private void btnParse_Click(object sender, EventArgs e)
         {
 
@@ -121,7 +135,16 @@ namespace CodeGen
 
         private void btnBuildOutputDir_Click(object sender, EventArgs e)
         {
-            
+            TemplateSelector(OutputEnum.OutputDir);
+        }
+
+        private void btnBuildProject_Click(object sender, EventArgs e)
+        {
+            TemplateSelector(OutputEnum.ProjectDir);
+        }
+
+        private void TemplateSelector(OutputEnum outputDestination)
+        {
             List<PropertyInfo> propertyInfos = new List<PropertyInfo>();
             foreach (CheckedListBoxItem item in checkedListBoxControl1.CheckedItems)
                 propertyInfos.Add(item.Value as PropertyInfo);
@@ -129,17 +152,20 @@ namespace CodeGen
 
             BuilderParams builderParams = new BuilderParams
             {
+                OutputDestination = outputDestination,
                 ModuleName = txtModulName.Text,
                 Root_Namespace = txtRootNameSpace.Text,
                 Module_Namespace = txtModulNamepace.Text,
                 EntitySet = txtEntitynamePlural.Text,
                 Entity = ((Type)cbEntity.SelectedItem).Name,
-                OutputPath = txtOutputPath.Text,
                 PropertyInfos = propertyInfos
-                //DataType = txtDataType.Text,
-                //PropertyName = txtPropertyName.Text,
-                //DefaultValue = txtDefaultValue.Text
             };
+
+            if (outputDestination == OutputEnum.OutputDir)
+                builderParams.OutputPath = txtOutputPath.Text;
+            else
+                builderParams.OutputPath = txtProjectApiPath.Text;
+
 
             if (chkEndpoints.Checked)
             {
@@ -196,13 +222,12 @@ namespace CodeGen
             }
         }
 
-
         private void ProcessTemplate(BuilderParams builderParams, string templateName)
         {
             string TemplateRootDirectory = GetTemplateDirectory();
             string WorkingTemplateDirectory = string.Empty;
 
-            Codebuilder codebuilder = Program.ServiceProvider.GetRequiredService<ICodebuilder>() as Codebuilder;
+            Codebuilder codebuilder = Program.ServiceProvider.GetRequiredService<Codebuilder>() as Codebuilder;
 
             switch (templateName)
             {
@@ -215,7 +240,7 @@ namespace CodeGen
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "CreateTemplateHandler.cs");
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "CreateTemplateResponse.cs");
                     codebuilder.Params = builderParams;
-                    codebuilder.BuildAsync();
+                    codebuilder.Build();
                     break;
 
 
@@ -226,7 +251,7 @@ namespace CodeGen
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "DeleteTemplateCommand.cs");
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "DeleteTemplateHandler.cs");
                     codebuilder.Params = builderParams;
-                    codebuilder.BuildAsync();
+                    codebuilder.Build();
                     break;
 
 
@@ -236,7 +261,7 @@ namespace CodeGen
                     builderParams.TemplatePaths.Clear();
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "TemplateCreatedEventHandler.cs");
                     codebuilder.Params = builderParams;
-                    codebuilder.BuildAsync();
+                    codebuilder.Build();
                     break;
 
                 case "MediatRGet":
@@ -247,7 +272,7 @@ namespace CodeGen
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "GetTemplateRequest.cs");
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "TemplateResponse.cs");
                     codebuilder.Params = builderParams;
-                    codebuilder.BuildAsync();
+                    codebuilder.Build();
                     break;
 
                 case "MediatRSearch":
@@ -258,7 +283,7 @@ namespace CodeGen
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "SearchTemplateHandler.cs");
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "SearchTemplateSpecs.cs");
                     codebuilder.Params = builderParams;
-                    codebuilder.BuildAsync();
+                    codebuilder.Build();
                     break;
 
                 case "MediatRUpdate":
@@ -270,7 +295,7 @@ namespace CodeGen
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "UpdateTemplateHandler.cs");
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "UpdateTemplateResponse.cs");
                     codebuilder.Params = builderParams;
-                    codebuilder.BuildAsync();
+                    codebuilder.Build();
                     break;
 
                 case "DomainEvents":
@@ -280,7 +305,7 @@ namespace CodeGen
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "TemplateCreated.cs");
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "TemplateUpdated.cs");
                     codebuilder.Params = builderParams;
-                    codebuilder.BuildAsync();
+                    codebuilder.Build();
                     break;
 
                 case "DomainExceptions":
@@ -289,7 +314,7 @@ namespace CodeGen
                     builderParams.TemplatePaths.Clear();
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "TemplateNotFoundException.cs");
                     codebuilder.Params = builderParams;
-                    codebuilder.BuildAsync();
+                    codebuilder.Build();
                     break;
 
                 case "Endpoints":
@@ -302,7 +327,7 @@ namespace CodeGen
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "SearchTemplateEndpoint.cs");
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "UpdateTemplateEndpoint.cs");
                     codebuilder.Params = builderParams;
-                    codebuilder.BuildAsync();
+                    codebuilder.Build();
                     break;
 
                 case "RoutesRegister":
@@ -311,7 +336,7 @@ namespace CodeGen
                     builderParams.TemplatePaths.Clear();
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "TemplateModule.cs");
                     codebuilder.Params = builderParams;
-                    codebuilder.BuildAsync();
+                    codebuilder.Build();
                     break;
 
 
@@ -322,10 +347,7 @@ namespace CodeGen
         }
 
 
-        private void btnBuildProject_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private static string GetTemplateDirectory()
         {
@@ -370,6 +392,11 @@ namespace CodeGen
             {
                 txtOutputPath.Text = outputPath.GetValue("OutputPath", defaultOutputPath)?.ToString();
             }
+
+
+            RegistryKey projectApiPath = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\MiruLogic\CodeGen");
+            if (projectApiPath != null)
+                txtProjectApiPath.Text = projectApiPath.GetValue("ProjectApiPath", defaultOutputPath)?.ToString();
         }
 
 

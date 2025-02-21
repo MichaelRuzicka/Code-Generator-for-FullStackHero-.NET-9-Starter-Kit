@@ -52,6 +52,7 @@ namespace CodeGen
                 propertyInfos = value;
             }
         }
+        public OutputEnum OutputDestination { get; set; }
 
     }
 }
