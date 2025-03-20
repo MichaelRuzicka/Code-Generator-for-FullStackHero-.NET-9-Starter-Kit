@@ -21,7 +21,7 @@ public sealed class Get[Entity]Handler([FromKeyedServices("[ServiceKey]")] IRead
 
                 if ([Entity_]Item == null) throw new [Entity]NotFoundException(request.Id);
 
-                return new [Entity]Response([Entity_]Item.Id, [EntityItemFields]);
+                return new [Entity]Response([EntityItemFields]);
             },
             cancellationToken: cancellationToken);
         return item!;

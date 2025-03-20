@@ -42,22 +42,22 @@ public static class [Module]Module
         //[Routes]
     }
  
-    public static WebApplicationBuilder RegisterCatalogServices(this WebApplicationBuilder builder)
+    public static WebApplicationBuilder RegisterPosServices(this WebApplicationBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder);
-        builder.Services.BindDbContext<CatalogDbContext>();
-        builder.Services.AddScoped<IDbInitializer, CatalogDbInitializer>();
-        builder.Services.AddKeyedScoped<IRepository<Product>, CatalogRepository<Product>>("catalog:products");
-        builder.Services.AddKeyedScoped<IReadRepository<Product>, CatalogRepository<Product>>("catalog:products");
+        builder.Services.BindDbContext<PosDbContext>();
+        builder.Services.AddScoped<IDbInitializer, PosDbInitializer>();
+        builder.Services.AddKeyedScoped<IRepository<Product>, PosRepository<Product>>("Pos:products");
+        builder.Services.AddKeyedScoped<IReadRepository<Product>, PosRepository<Product>>("Pos:products");
 
-        builder.Services.AddKeyedScoped<IRepository<Brand>, CatalogRepository<Brand>>("catalog:brands");
-        builder.Services.AddKeyedScoped<IReadRepository<Brand>, CatalogRepository<Brand>>("catalog:brands");
+        builder.Services.AddKeyedScoped<IRepository<Brand>, PosRepository<Brand>>("Pos:brands");
+        builder.Services.AddKeyedScoped<IReadRepository<Brand>, PosRepository<Brand>>("Pos:brands");
 
         //[Services]
 
         return builder;
     }
-    public static WebApplication UseCatalogModule(this WebApplication app)
+    public static WebApplication UsePosModule(this WebApplication app)
     {
         return app;
     }

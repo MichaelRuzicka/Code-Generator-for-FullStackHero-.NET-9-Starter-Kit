@@ -12,7 +12,7 @@ public static class Get[Entity]Endpoint
     internal static RouteHandlerBuilder MapGet[Entity]Endpoint(this IEndpointRouteBuilder endpoints)
     {
         return endpoints
-            .MapGet("/{id:guid}", async (Guid id, ISender mediator) =>
+            .MapGet("/{id:guid}", async ([PrimaryKeyWithDataTypeLowerCase], ISender mediator) =>
             {
                 var response = await mediator.Send(new Get[Entity]Request(id));
                 return Results.Ok(response);

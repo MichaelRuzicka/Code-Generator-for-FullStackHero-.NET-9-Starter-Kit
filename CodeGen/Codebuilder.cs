@@ -153,6 +153,7 @@ namespace CodeGen
                 //Get/v1/
                 case "GetTemplateHandler.cs":
                 case "GetTemplateRequest.cs":
+                case "GetTemplateSpecs.cs":
                 case "TemplateResponse.cs":
                     projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Application\\{Params.EntitySet}\\Get\\v1\\";
                     Directory.CreateDirectory(Path.GetFullPath(projectPath));

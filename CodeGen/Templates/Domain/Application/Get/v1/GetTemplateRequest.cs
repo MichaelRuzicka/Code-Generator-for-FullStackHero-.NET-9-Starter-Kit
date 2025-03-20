@@ -4,6 +4,5 @@ namespace [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].G
 
 public class Get[Entity]Request : IRequest<[Entity]Response>
 {
-    public Guid Id { get; set; }
-    public Get[Entity]Request(Guid id) => Id = id;
+    [PrimaryKeyWithProperty]
 }

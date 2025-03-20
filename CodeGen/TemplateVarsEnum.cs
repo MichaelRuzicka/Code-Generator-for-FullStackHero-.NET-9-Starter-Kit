@@ -51,11 +51,30 @@ namespace CodeGen
         [EnumMember(Value = "[PropertyConstructor]")]
         PropertyConstructor,
 
+        [EnumMember(Value = "[PrimaryKeyWithProperty]")]
+        PrimaryKeyWithProperty,
+
+        [EnumMember(Value = "[PrimaryKeyWithDataTypeLowerCase]")]
+        PrimaryKeyWithDataTypeLowerCase,
+
+        [EnumMember(Value = "[PrimaryKeyWithDataTypeUpperCase]")]
+        PrimaryKeyWithDataTypeUpperCase,
+
+        [EnumMember(Value = "[PrimaryKeyFieldNameLowerCase]")]
+        PrimaryKeyFieldNameLowerCase,
+
+        [EnumMember(Value = "[PrimaryKeyFieldNameUpperCase]")]
+        PrimaryKeyFieldNameUpperCase,
+
+        [EnumMember(Value = "[PrimaryKeyWhere]")]
+        PrimaryKeyWhere,
+
         [EnumMember(Value = "//[Routes]")] //Enhance Routes Section in Module
         Routes,
 
         [EnumMember(Value = "//[Services]")] //Enhance Service Section in Module
         Services
+
 
     }
 }

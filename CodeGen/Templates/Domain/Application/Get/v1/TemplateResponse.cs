@@ -1,3 +1,3 @@
 namespace [Root_Namespace].[Module_Namespace].[Module].Application.[EntitySet].Get.v1;
 
-public sealed record [Entity]Response(Guid? Id, [PropertyConstructor]);
+public sealed record [Entity]Response([PropertyConstructor]);

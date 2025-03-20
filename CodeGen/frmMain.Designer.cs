@@ -43,6 +43,7 @@
             txtModulNamepace = new DevExpress.XtraEditors.TextEdit();
             txtModulName = new DevExpress.XtraEditors.TextEdit();
             grpPO = new DevExpress.XtraEditors.GroupControl();
+            chkEditAll = new DevExpress.XtraEditors.CheckEdit();
             layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             groupControl4 = new DevExpress.XtraEditors.GroupControl();
             chkSelectAllApp = new DevExpress.XtraEditors.CheckEdit();
@@ -124,6 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)txtModulName.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)grpPO).BeginInit();
             grpPO.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chkEditAll.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControl2).BeginInit();
             layoutControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)groupControl4).BeginInit();
@@ -247,7 +249,7 @@
             // 
             // txtRootNameSpace
             // 
-            txtRootNameSpace.EditValue = "FSH";
+            txtRootNameSpace.EditValue = "SaleSnap";
             txtRootNameSpace.Location = new System.Drawing.Point(151, 116);
             txtRootNameSpace.Name = "txtRootNameSpace";
             txtRootNameSpace.Size = new System.Drawing.Size(164, 20);
@@ -285,7 +287,7 @@
             // 
             // txtModulNamepace
             // 
-            txtModulNamepace.EditValue = "Starter.WebApi";
+            txtModulNamepace.EditValue = "WebApi";
             txtModulNamepace.Location = new System.Drawing.Point(458, 116);
             txtModulNamepace.Name = "txtModulNamepace";
             txtModulNamepace.Size = new System.Drawing.Size(194, 20);
@@ -294,7 +296,7 @@
             // 
             // txtModulName
             // 
-            txtModulName.EditValue = "Catalog";
+            txtModulName.EditValue = "Pos";
             txtModulName.Location = new System.Drawing.Point(795, 116);
             txtModulName.Name = "txtModulName";
             txtModulName.Size = new System.Drawing.Size(199, 20);
@@ -303,6 +305,7 @@
             // 
             // grpPO
             // 
+            grpPO.Controls.Add(chkEditAll);
             grpPO.Controls.Add(layoutControl2);
             grpPO.Enabled = false;
             grpPO.Location = new System.Drawing.Point(12, 248);
@@ -310,6 +313,16 @@
             grpPO.Size = new System.Drawing.Size(982, 429);
             grpPO.TabIndex = 7;
             grpPO.Text = "Select Propertys && Build Options";
+            // 
+            // chkEditAll
+            // 
+            chkEditAll.Location = new System.Drawing.Point(845, 2);
+            chkEditAll.Name = "chkEditAll";
+            chkEditAll.Properties.Caption = "Select All";
+            chkEditAll.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            chkEditAll.Size = new System.Drawing.Size(75, 20);
+            chkEditAll.TabIndex = 1;
+            chkEditAll.CheckedChanged += chkEditAll_CheckedChanged;
             // 
             // layoutControl2
             // 
@@ -583,7 +596,7 @@
             // 
             chkRoutesRegister.Location = new System.Drawing.Point(12, 36);
             chkRoutesRegister.Name = "chkRoutesRegister";
-            chkRoutesRegister.Properties.Caption = "Add Routes && Register Catalog Services in Module";
+            chkRoutesRegister.Properties.Caption = "Add Routes && Register Pos Services in Module";
             chkRoutesRegister.Size = new System.Drawing.Size(523, 20);
             chkRoutesRegister.StyleController = layoutControl3;
             chkRoutesRegister.TabIndex = 7;
@@ -952,7 +965,7 @@
             ClientSize = new System.Drawing.Size(1006, 715);
             Controls.Add(layoutControl1);
             Name = "frmMain";
-            Text = "Codegen 0.1 (C) 2025 MiruLogic";
+            Text = "Codegen 0.2,  2025 MiruLogic";
             ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
             layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)txtProjectApiPath.Properties).EndInit();
@@ -963,6 +976,7 @@
             ((System.ComponentModel.ISupportInitialize)txtModulName.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)grpPO).EndInit();
             grpPO.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)chkEditAll.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControl2).EndInit();
             layoutControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)groupControl4).EndInit();
@@ -1120,6 +1134,7 @@
         private DevExpress.XtraEditors.TextEdit txtProjectApiPath;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem30;
+        private DevExpress.XtraEditors.CheckEdit chkEditAll;
     }
 }
 

@@ -32,7 +32,7 @@ namespace CodeGen
             xtraOpenFileDialog1.Filter = "dll files (*.dll)|*.dll|All files (*.*)|*.*";
             if (xtraOpenFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                txtFileNameDomain.Text = xtraOpenFileDialog1.FileName;
+                txtFileNameCore.Text = xtraOpenFileDialog1.FileName;
                 var subkey = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\MiruLogic\CodeGen");
                 subkey.SetValue("FrameWorkPath", txtFileNameDomain.Text);
             }
@@ -77,7 +77,7 @@ namespace CodeGen
         }
         private void btnParse_Click(object sender, EventArgs e)
         {
-
+            cbEntity.Properties.Items.Clear();
             var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
 
 
@@ -86,7 +86,7 @@ namespace CodeGen
 
             foreach (AssemblyName aName in referencedAssemblys)
             {
-                if (aName.Name == "FSH.Framework.Core")
+                if (aName.Name == $"{txtRootNameSpace.Text}.Framework.Core")
                     loadedAssemblies.Add(Assembly.LoadFrom(txtFileNameCore.Text));
                 else
 
@@ -97,8 +97,6 @@ namespace CodeGen
             cbEntity.Enabled = true;
             txtEntitynamePlural.Enabled = true;
             grpPO.Enabled = true;
-            btnBuildOutputDir.Enabled = true;
-            btnBuildProject.Enabled = true;
         }
 
 
@@ -112,6 +110,9 @@ namespace CodeGen
             checkedListBoxControl1.Items.AddRange(properties);
             ((BaseCheckedListBoxControl)checkedListBoxControl1).CheckAll();
             txtEntitynamePlural.Text = entityType.Name + "s";
+
+            btnBuildOutputDir.Enabled = true;
+            btnBuildProject.Enabled = true;
         }
 
         private void chkSelectAllInfra_CheckedChanged(object sender, EventArgs e)
@@ -136,6 +137,12 @@ namespace CodeGen
             chkMediatRUpdate.Checked = chkSelectAllApp.Checked;
         }
 
+        private void chkEditAll_CheckedChanged(object sender, EventArgs e)
+        {
+            chkSelectAllInfra.Checked = chkEditAll.Checked;
+            chkSelectAllDomain.Checked = chkEditAll.Checked;
+            chkSelectAllApp.Checked = chkEditAll.Checked;
+        }
         private void btnBuildOutputDir_Click(object sender, EventArgs e)
         {
             TemplateSelector(OutputEnum.OutputDir);
@@ -144,6 +151,7 @@ namespace CodeGen
         private void btnBuildProject_Click(object sender, EventArgs e)
         {
             TemplateSelector(OutputEnum.ProjectDir);
+            XtraMessageBox.Show("Project Build Completed", "Code Generator", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void TemplateSelector(OutputEnum outputDestination)
@@ -273,6 +281,7 @@ namespace CodeGen
                     builderParams.TemplatePaths.Clear();
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "GetTemplateHandler.cs");
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "GetTemplateRequest.cs");
+                    builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "GetTemplateSpecs.cs");
                     builderParams.TemplatePaths.Add(WorkingTemplateDirectory + "TemplateResponse.cs");
                     codebuilder.Params = builderParams;
                     codebuilder.Build();
@@ -349,8 +358,6 @@ namespace CodeGen
                     codebuilder.Build();
                     break;
 
-
-
                 default:
                     break;
             }
@@ -368,7 +375,7 @@ namespace CodeGen
 
         private void SetFolderDefaults()
         {
-            string defaultDomainPath = @"C:\Users\Radioactive\Source\repos\dotnet-starter-kit\src\api\modules\Catalog\Catalog.Domain\bin\Debug\net9.0";
+            string defaultDomainPath = @"C:\Users\Radioactive\Source\repos\dotnet-starter-kit\src\api\modules\Pos\Pos.Domain\bin\Debug\net9.0";
             RegistryKey domainPath = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\MiruLogic\CodeGen");
             if (domainPath == null)
             {
@@ -380,7 +387,7 @@ namespace CodeGen
             }
 
 
-            string defaultFrameworkPath = @"C:\Users\Radioactive\Source\repos\dotnet-starter-kit\src\api\modules\Catalog\Catalog.Domain\bin\Debug\net9.0";
+            string defaultFrameworkPath = @"C:\Users\Radioactive\Source\repos\dotnet-starter-kit\src\api\modules\Pos\Pos.Domain\bin\Debug\net9.0";
             RegistryKey frameWorkPath = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\MiruLogic\CodeGen");
             if (frameWorkPath == null)
             {
@@ -409,7 +416,7 @@ namespace CodeGen
                 txtProjectApiPath.Text = projectApiPath.GetValue("ProjectApiPath", defaultOutputPath)?.ToString();
         }
 
-
+    
     }
 }
 

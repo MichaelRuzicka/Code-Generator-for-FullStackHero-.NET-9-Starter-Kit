@@ -13,8 +13,8 @@ namespace CodeGen
 
 
 }
-//[Module] zb.Catalog
-//[Module_Namespace]   Default: FSH.Starter.WebApi.Catalog
+//[Module] zb.Pos
+//[Module_Namespace]   Default: FSH.Starter.WebApi.Pos
 //[EntitySet] Default: Entity Plural zb.Brands
 //[Entity]
 //[Entity_]

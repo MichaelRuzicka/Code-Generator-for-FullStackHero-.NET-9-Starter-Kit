@@ -10,6 +10,6 @@ public class Search[Entity]Specs : EntitiesByPaginationFilterSpec<[Entity], [Ent
     public Search[Entity]Specs(Search[EntitySet]Command command)
         : base(command) =>
         Query
-            .OrderBy(c => c.Name, !command.HasOrderBy())
-            .Where(b => b.Name.Contains(command.Keyword), !string.IsNullOrEmpty(command.Keyword));
+            .OrderBy(c => c.[PrimaryKeyFieldNameUpperCase], !command.HasOrderBy());
+      //      .Where(b => b.[PrimaryKeyFieldNameUpperCase].Contains(command.Keyword), !string.IsNullOrEmpty(command.Keyword));
 }

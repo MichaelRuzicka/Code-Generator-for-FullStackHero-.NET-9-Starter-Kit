@@ -26,6 +26,7 @@
     <Compile Remove="Templates\Domain\Application\Get\v1\GetBrandRequest.cs" />
     <Compile Remove="Templates\Domain\Application\Get\v1\GetTemplateHandler.cs" />
     <Compile Remove="Templates\Domain\Application\Get\v1\GetTemplateRequest.cs" />
+    <Compile Remove="Templates\Domain\Application\Get\v1\GetTemplateSpecs.cs" />
     <Compile Remove="Templates\Domain\Application\Get\v1\TemplateResponse.cs" />
     <Compile Remove="Templates\Domain\Application\Search\v1\SearchBrandsCommand.cs" />
     <Compile Remove="Templates\Domain\Application\Search\v1\SearchBrandsHandler.cs" />
@@ -75,6 +76,7 @@
     <None Include="Templates\Domain\Application\EventHandlers\TemplateCreatedEventHandler.cs" />
     <None Include="Templates\Domain\Application\Get\v1\GetTemplateHandler.cs" />
     <None Include="Templates\Domain\Application\Get\v1\GetTemplateRequest.cs" />
+    <None Include="Templates\Domain\Application\Get\v1\GetTemplateSpecs.cs" />
     <None Include="Templates\Domain\Application\Get\v1\TemplateResponse.cs" />
     <None Include="Templates\Domain\Application\Search\v1\SearchTemplateCommand.cs" />
     <None Include="Templates\Domain\Application\Search\v1\SearchTemplateHandler.cs" />
@@ -97,6 +99,9 @@
   <ItemGroup>
     <PackageReference Include="DevExpress.Win.Design" Version="24.2.3" />
     <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="9.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.2" />
   </ItemGroup>

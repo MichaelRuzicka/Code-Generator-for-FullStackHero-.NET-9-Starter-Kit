@@ -12,9 +12,9 @@ public static class Delete[Entity]Endpoint
     internal static RouteHandlerBuilder Map[Entity]DeleteEndpoint(this IEndpointRouteBuilder endpoints)
     {
         return endpoints
-            .MapDelete("/{id:guid}", async (Guid id, ISender mediator) =>
+            .MapDelete("/{id:guid}", async ([PrimaryKeyWithDataTypeUpperCase], ISender mediator) =>
              {
-                 await mediator.Send(new Delete[Entity]Command(id));
+                 await mediator.Send(new Delete[Entity]Command([PrimaryKeyFieldNameUpperCase]));
                  return Results.NoContent();
              })
             .WithName(nameof(Delete[Entity]Endpoint))

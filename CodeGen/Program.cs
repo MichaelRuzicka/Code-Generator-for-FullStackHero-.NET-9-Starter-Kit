@@ -49,6 +49,13 @@ namespace CodeGen
                 services.AddTransient<ITemplateLineHandler, RoutesLineHandler>();
                 services.AddTransient<ITemplateLineHandler, PropertyListingLineHandler>();
                 services.AddTransient<ITemplateLineHandler, PropertyConstructorLineHandler>();
+                services.AddTransient<ITemplateLineHandler, PrimaryKeyWithPropertyLineHandler>();
+                services.AddTransient<ITemplateLineHandler, PrimaryKeyWithDataTypeLowerCaseLineHandler>();
+                services.AddTransient<ITemplateLineHandler, PrimaryKeyWithDataTypeUpperCaseLineHandler>();
+                services.AddTransient<ITemplateLineHandler, PrimaryKeyFieldNameLowerCaseLineHandler>();
+                services.AddTransient<ITemplateLineHandler, PrimaryKeyFieldNameUpperCaseLineHandler>();
+                services.AddTransient<ITemplateLineHandler, PrimaryKeyWhereLineHandler>();
+                
                 services.AddTransient<frmMain>();
             });
         }
@@ -56,6 +63,8 @@ namespace CodeGen
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+
+            MessageBox.Show("An unhandled exception just occurred: " + e.ExceptionObject.ToString(), "Unhandled Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
             ShowExceptionDetails(e.ExceptionObject as Exception);
             System.Windows.Forms.Application.Exit();
         }

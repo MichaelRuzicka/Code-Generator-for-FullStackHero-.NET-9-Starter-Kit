@@ -13,12 +13,12 @@ public sealed class Delete[Entity]Handler(ILogger<Delete[Entity]Handler> logger,
     {
         ArgumentNullException.ThrowIfNull(request);
 
-        var [Entity_] = await repository.GetByIdAsync(request.Id, cancellationToken);
+        var [Entity_] = await repository.GetByIdAsync(request.[PrimaryKeyFieldNameLowerCase], cancellationToken);
 
-        _ = [Entity_] ?? throw new [Entity]NotFoundException(request.Id);
+        _ = [Entity_] ?? throw new [Entity]NotFoundException(request.[PrimaryKeyFieldNameLowerCase]);
 
         await repository.DeleteAsync([Entity_], cancellationToken);
 
-        logger.LogInformation("[Entity] with id : {[Entity]Id} deleted", [Entity_].Id);
+        logger.LogInformation("[Entity] with id : {[Entity]Id} deleted", request.[PrimaryKeyFieldNameLowerCase]);
     }
 }

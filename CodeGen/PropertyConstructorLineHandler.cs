@@ -12,14 +12,15 @@ namespace CodeGen
             string optionalPropertys = string.Empty;
             foreach (PropertyInfo pInfo in Params.PropertyInfos)
             {
-                if (pInfo.CustomAttributes != null && pInfo.CustomAttributes.Any(a => a.AttributeType.Name == "NullableAttribute"))
-                {
-                   optionalPropertys =  $"{pInfo.PropertyType}? {pInfo.Name} = null, {Environment.NewLine}";
-                }
+                if (pInfo.CustomAttributes != null && pInfo.CustomAttributes.Any(a => a.AttributeType.Name == "NullableAttribute" || a.AttributeType.Name == "InversePropertyAttribute"))
+                    propertyConstructor += $"{pInfo.PropertyType.ToString().Replace("`1", "").Replace("[", "<").Replace("]", ">?")} {pInfo.Name} = null, {Environment.NewLine}";
+                else
+                    if (pInfo.PropertyType.Name.Contains("Nullable`1"))
+                    propertyConstructor += $"{pInfo.PropertyType.ToString().Replace("System.Nullable`1[", "").Replace("]", "?")} {pInfo.Name}, {Environment.NewLine}";
                 else
                     propertyConstructor += $"{pInfo.PropertyType} {pInfo.Name}, {Environment.NewLine}";
             }
-            propertyConstructor +=optionalPropertys;
+            propertyConstructor += optionalPropertys;
             propertyConstructor = propertyConstructor.Substring(0, propertyConstructor.Length - 4);
 
             templateLine = templateLine.Replace(EnumExtensions.GetEnumValue(TemplateVarsEnum.PropertyConstructor), propertyConstructor);
@@ -27,4 +28,5 @@ namespace CodeGen
     }
 }
 
-//  [property: DefaultValue("Your default value"] string? Description = null
+//  System.Nullable`1[System.Decimal] BaseEkNetto, 
+//System.Collections.Generic.ICollection`1[SaleSnap.WebApi.Pos.Domain.ProductVariant]? ProductVariants = null, 

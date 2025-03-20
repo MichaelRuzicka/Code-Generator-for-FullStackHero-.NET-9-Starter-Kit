@@ -12,10 +12,10 @@ namespace CodeGen
             string modulSetLowerCase = Params.ModuleName.ToLower();
 
             StringBuilder serviceRegistration = new StringBuilder();
-            serviceRegistration.Append("builder.Services.AddKeyedScoped<IRepository<[Entity]>, CatalogRepository<[Entity]>>(\"[Module]:[EntitySet]\");");
+            serviceRegistration.Append("builder.Services.AddKeyedScoped<IRepository<[Entity]>, PosRepository<[Entity]>>(\"[Module]:[EntitySet]\");");
             serviceRegistration.Append(Environment.NewLine).Append("\t").Append("\t");
 
-            serviceRegistration.Append("builder.Services.AddKeyedScoped<IReadRepository<[Entity]>, CatalogRepository<[Entity]>>(\"[Module]:[EntitySet]\");");
+            serviceRegistration.Append("builder.Services.AddKeyedScoped<IReadRepository<[Entity]>, PosRepository<[Entity]>>(\"[Module]:[EntitySet]\");");
             serviceRegistration.Append(Environment.NewLine).Append(Environment.NewLine).Append("\t").Append("\t");
 
 
