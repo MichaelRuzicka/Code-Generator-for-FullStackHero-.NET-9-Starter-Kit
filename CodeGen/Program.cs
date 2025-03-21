@@ -55,6 +55,7 @@ namespace CodeGen
                 services.AddTransient<ITemplateLineHandler, PrimaryKeyFieldNameLowerCaseLineHandler>();
                 services.AddTransient<ITemplateLineHandler, PrimaryKeyFieldNameUpperCaseLineHandler>();
                 services.AddTransient<ITemplateLineHandler, PrimaryKeyWhereLineHandler>();
+                services.AddTransient<ITemplateLineHandler, PrimaryKeyFieldDataTypeLowerCaseLineHandler>();
                 
                 services.AddTransient<frmMain>();
             });

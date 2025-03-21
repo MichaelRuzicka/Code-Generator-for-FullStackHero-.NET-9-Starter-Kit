@@ -12,14 +12,14 @@ public static class Delete[Entity]Endpoint
     internal static RouteHandlerBuilder Map[Entity]DeleteEndpoint(this IEndpointRouteBuilder endpoints)
     {
         return endpoints
-            .MapDelete("/{id:guid}", async ([PrimaryKeyWithDataTypeUpperCase], ISender mediator) =>
+            .MapDelete("/{[PrimaryKeyFieldNameLowerCase]:[PrimaryKeyFieldDataTypeLowerCase]}", async ([PrimaryKeyWithDataTypeUpperCase], ISender mediator) =>
              {
                  await mediator.Send(new Delete[Entity]Command([PrimaryKeyFieldNameUpperCase]));
                  return Results.NoContent();
              })
             .WithName(nameof(Delete[Entity]Endpoint))
-            .WithSummary("deletes [Entity_] by id")
-            .WithDescription("deletes [Entity_] by id")
+            .WithSummary("deletes [Entity_] by [PrimaryKeyFieldNameLowerCase]")
+            .WithDescription("deletes [Entity_] by [PrimaryKeyFieldNameLowerCase]")
             .Produces(StatusCodes.Status204NoContent)
             .RequirePermission("Permissions.[EntitySet].Delete")
             .MapToApiVersion(1);

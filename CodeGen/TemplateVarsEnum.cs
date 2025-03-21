@@ -66,6 +66,10 @@ namespace CodeGen
         [EnumMember(Value = "[PrimaryKeyFieldNameUpperCase]")]
         PrimaryKeyFieldNameUpperCase,
 
+        [EnumMember(Value = "[PrimaryKeyFieldDataTypeLowerCase]")]
+        PrimaryKeyFieldDataTypeLowerCase,
+        
+
         [EnumMember(Value = "[PrimaryKeyWhere]")]
         PrimaryKeyWhere,
 

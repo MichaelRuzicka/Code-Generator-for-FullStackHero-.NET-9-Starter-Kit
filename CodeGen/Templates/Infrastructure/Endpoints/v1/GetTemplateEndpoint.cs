@@ -12,14 +12,14 @@ public static class Get[Entity]Endpoint
     internal static RouteHandlerBuilder MapGet[Entity]Endpoint(this IEndpointRouteBuilder endpoints)
     {
         return endpoints
-            .MapGet("/{id:guid}", async ([PrimaryKeyWithDataTypeLowerCase], ISender mediator) =>
+     .MapGet("/{[PrimaryKeyFieldNameLowerCase]:[PrimaryKeyFieldDataTypeLowerCase]}", async ([PrimaryKeyWithDataTypeLowerCase], ISender mediator) =>
             {
                 var response = await mediator.Send(new Get[Entity]Request(id));
                 return Results.Ok(response);
             })
             .WithName(nameof(Get[Entity]Endpoint))
-            .WithSummary("gets [Entity_] by id")
-            .WithDescription("gets [Entity_] by id")
+            .WithSummary("gets [Entity_] by [PrimaryKeyFieldNameLowerCase]")
+            .WithDescription("gets [Entity_] by [PrimaryKeyFieldNameLowerCase]")
             .Produces<[Entity]Response >()
             .RequirePermission("Permissions.[EntitySet].View")
             .MapToApiVersion(1);

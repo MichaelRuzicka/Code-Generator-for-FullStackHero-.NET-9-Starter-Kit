@@ -12,9 +12,9 @@ public static class Update[Entity]Endpoint
     internal static RouteHandlerBuilder Map[Entity]UpdateEndpoint(this IEndpointRouteBuilder endpoints)
     {
         return endpoints
-            .MapPut("/{id:guid}", async ([PrimaryKeyWithDataTypeLowerCase], Update[Entity]Command request, ISender mediator) =>
+            .MapPut("/{[PrimaryKeyFieldNameLowerCase]:[PrimaryKeyFieldDataTypeLowerCase]}", async ([PrimaryKeyWithDataTypeLowerCase], Update[Entity]Command request, ISender mediator) =>
             {
-                if (id != request.Id) return Results.BadRequest();
+                if ([PrimaryKeyFieldNameLowerCase] != request.[PrimaryKeyFieldNameLowerCase]) return Results.BadRequest();
                 var response = await mediator.Send(request);
                 return Results.Ok(response);
             })
