@@ -28,4 +28,6 @@
 <li>Optional: Add the //[Routes] and //[Services] Markers to modify your CatalogModule File with AddRoutes & Services Configuration </li>
 <li>Run Codegen</li>
 <li>Enjoy code generation and save a lot of time!</li>
+
+  PS: Check the correct EF Assembly Versions! (Codegen uses 9.0.1 since my FSH Template uses this Version too)
 </ul>
