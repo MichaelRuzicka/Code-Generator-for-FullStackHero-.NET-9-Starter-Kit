@@ -17,7 +17,7 @@
 <b>Prerequisites:</b>
 <ul>
 <li>Microsoft .NET 9</li>
-<li>DevExpress Winforms 24.2</li>
+<li>DevExpress Winforms 24.2 but can easy changed to standard winforms controls </li>
 <li>Installed FullStackHero dotnet-starter-kit with original Folder Structure</li>
 </ul>
 <b>Quick Start:</b>
