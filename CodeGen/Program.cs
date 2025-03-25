@@ -66,15 +66,9 @@ namespace CodeGen
         {
 
             MessageBox.Show("An unhandled exception just occurred: " + e.ExceptionObject.ToString(), "Unhandled Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            ShowExceptionDetails(e.ExceptionObject as Exception);
             System.Windows.Forms.Application.Exit();
         }
 
-        static void ShowExceptionDetails(Exception Ex)
-        {
-
-            MessageBox.Show(Ex.Message, Ex.TargetSite.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
+ 
     }
 }
