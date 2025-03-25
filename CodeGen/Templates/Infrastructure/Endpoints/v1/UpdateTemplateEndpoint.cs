@@ -14,7 +14,7 @@ public static class Update[Entity]Endpoint
         return endpoints
             .MapPut("/{[PrimaryKeyFieldNameLowerCase]:[PrimaryKeyFieldDataTypeLowerCase]}", async ([PrimaryKeyWithDataTypeLowerCase], Update[Entity]Command request, ISender mediator) =>
             {
-                if ([PrimaryKeyFieldNameLowerCase] != request.[PrimaryKeyFieldNameLowerCase]) return Results.BadRequest();
+                if ([PrimaryKeyFieldNameLowerCase] != request.[PrimaryKeyFieldNameUpperCase]) return Results.BadRequest();
                 var response = await mediator.Send(request);
                 return Results.Ok(response);
             })
