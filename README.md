@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/86368f8a-1031-4805-bef0-a25399ac402f)
+
+
 <p><center><b>Code Generator for FullStackHero .NET 9 Starter Kit</b></center></p>
 
 <p><center><b>This Code generator for FullStackHero .NET9 Starter Kit enables you to quickly generate all 25 API files needed for CRUD endpoint creation directly from your model.</b></center></p>
@@ -14,15 +17,17 @@
 <b>Prerequisites:</b>
 <ul>
 <li>Microsoft .NET 9</li>
-<li>DevExpress Winforms 24.2</li>
+<li>DevExpress Winforms 24.2 but can easy changed to standard winforms controls </li>
 <li>Installed FullStackHero dotnet-starter-kit with original Folder Structure</li>
 </ul>
 <b>Quick Start:</b>
 <ul>
 <li>Clone Git repository</li>
 <li>Set all files in template directory to build action "none" (maybe git clone do this already for you)</li>
-<li>Write your model and entity configuration, remark the “QueueDomainEvent” call, since the model has recursive depencies with the API (QueueDomainEvent) files</li>
-<li>Update Entity-framework context</li>
-<li>Build your project (Codegen searches for the model in the compiled assembly)</li>
+<li>Write your model and entity configuration, remark the “QueueDomainEvent” call (since the model has recursive depencies with the API QueueDomainEvent calls) then build at least your domain layer</li>
+<li>Optional: Add the //[Routes] and //[Services] Markers to modify your CatalogModule File with AddRoutes & Services Configuration </li>
+<li>Run Codegen</li>
 <li>Enjoy code generation and save a lot of time!</li>
+
+  PS: Check the correct EF Assembly Versions! (Codegen uses 9.0.1 since my FSH Template uses this Version too)
 </ul>
