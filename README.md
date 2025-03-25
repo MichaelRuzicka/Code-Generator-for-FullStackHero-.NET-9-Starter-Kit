@@ -24,8 +24,8 @@
 <ul>
 <li>Clone Git repository</li>
 <li>Set all files in template directory to build action "none" (maybe git clone do this already for you)</li>
-<li>Write your model and entity configuration, remark the “QueueDomainEvent” call, since the model has recursive depencies with the API (QueueDomainEvent) files</li>
-<li>Update Entity-framework context</li>
-<li>Build your project (Codegen searches for the model in the compiled assembly)</li>
+<li>Write your model and entity configuration, remark the “QueueDomainEvent” call (since the model has recursive depencies with the API QueueDomainEvent calls) then build at least your domain layer</li>
+<li>Optional: Add the //[Routes] and //[Services] Markers to modify your CatalogModule File with AddRoutes & Services Configuration </li>
+<li>Run Codegen</li>
 <li>Enjoy code generation and save a lot of time!</li>
 </ul>
