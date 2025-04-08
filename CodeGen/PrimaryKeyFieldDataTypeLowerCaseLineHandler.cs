@@ -36,6 +36,8 @@ public static class Extensions
 {
     public static string GetClrType(Type type)
     {
+        if (type.FullName == "System.Guid") // Guid is not covered: https://learn.microsoft.com/en-us/previous-versions/dotnet/netframework-1.1/86792hfa(v=vs.71)?redirectedfrom=MSDN
+            return type.Name;
         using (var provider = new CSharpCodeProvider())
         {
             var typeRef = new CodeTypeReference(type);

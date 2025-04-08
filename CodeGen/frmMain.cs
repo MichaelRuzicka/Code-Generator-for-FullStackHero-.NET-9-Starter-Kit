@@ -12,6 +12,9 @@ using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using DevExpress.XtraTreeList;
 using DevExpress.CodeParser;
+using DevExpress.XtraRichEdit.Model;
+using DevExpress.Diagram.Core.Native.Generation;
+using System.Threading.Tasks;
 
 namespace CodeGen
 {
@@ -78,6 +81,7 @@ namespace CodeGen
         private void btnParse_Click(object sender, EventArgs e)
         {
             cbEntity.Properties.Items.Clear();
+            cbEntity.Properties.Items.Add("All Entities");
             var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
 
 
@@ -103,6 +107,13 @@ namespace CodeGen
         private void cbEntity_SelectedValueChanged(object sender, EventArgs e)
         {
             checkedListBoxControl1.Items.Clear();
+            btnBuildOutputDir.Enabled = true;
+            btnBuildProject.Enabled = true;
+            if (cbEntity.EditValue.ToString() == "All Entities")
+                return;
+
+
+
             var entityType = (Type)cbEntity.EditValue;
             var entity = Activator.CreateInstance(entityType);
             var properties = entityType.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly);
@@ -111,8 +122,7 @@ namespace CodeGen
             ((BaseCheckedListBoxControl)checkedListBoxControl1).CheckAll();
             txtEntitynamePlural.Text = entityType.Name + "s";
 
-            btnBuildOutputDir.Enabled = true;
-            btnBuildProject.Enabled = true;
+
         }
 
         private void chkSelectAllInfra_CheckedChanged(object sender, EventArgs e)
@@ -145,22 +155,56 @@ namespace CodeGen
         }
         private void btnBuildOutputDir_Click(object sender, EventArgs e)
         {
-            TemplateSelector(OutputEnum.OutputDir);
+            if (cbEntity.EditValue as string == "All Entities")
+                BuildProjectAllEntities(OutputEnum.ProjectDir);
+            else
+                TemplateSelectorSingle(OutputEnum.ProjectDir);
+
+            lblStatus.Text = $"Waiting...";
+            XtraMessageBox.Show("Build to output directory completed", "Code Generator", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnBuildProject_Click(object sender, EventArgs e)
         {
-            TemplateSelector(OutputEnum.ProjectDir);
-            XtraMessageBox.Show("Project Build Completed", "Code Generator", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (cbEntity.EditValue as string == "All Entities")
+                 BuildProjectAllEntities(OutputEnum.ProjectDir);
+            else
+                 TemplateSelectorSingle(OutputEnum.ProjectDir);
+
+            lblStatus.Text = $"Waiting...";
+            XtraMessageBox.Show("Project build completed", "Code Generator", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
-        private void TemplateSelector(OutputEnum outputDestination)
+        private void BuildProjectAllEntities(OutputEnum outputDestination)
         {
-            List<PropertyInfo> propertyInfos = new List<PropertyInfo>();
+            foreach (var item in cbEntity.Properties.Items)
+            {
+                if (item.ToString() == "All Entities")
+                    continue;
+                var entityType = (Type)item;
+                var entity = Activator.CreateInstance(entityType);
+                List<System.Reflection.PropertyInfo> propertyInfos = entityType.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly).ToList();
+                txtEntitynamePlural.Text = entityType.Name + "s";
+
+                TemplateSelector(outputDestination, ((Type)item).Name, propertyInfos);
+            }
+        }
+
+        private void TemplateSelectorSingle(OutputEnum outputDestination)
+        {
+            List<System.Reflection.PropertyInfo> propertyInfos = new List<System.Reflection.PropertyInfo>();
+
             foreach (CheckedListBoxItem item in checkedListBoxControl1.CheckedItems)
-                propertyInfos.Add(item.Value as PropertyInfo);
+                propertyInfos.Add(item.Value as System.Reflection.PropertyInfo);
 
+            TemplateSelector(outputDestination, ((Type)cbEntity.SelectedItem).Name, propertyInfos);
+        }
 
+        private void TemplateSelector(OutputEnum outputDestination, string currentEntityName, List<System.Reflection.PropertyInfo> selectedPropertyInfos)
+        {
+            lblStatus.Text = $"Processing {currentEntityName}";
+            lblStatus.Refresh();
             BuilderParams builderParams = new BuilderParams
             {
                 OutputDestination = outputDestination,
@@ -168,8 +212,8 @@ namespace CodeGen
                 Root_Namespace = txtRootNameSpace.Text,
                 Module_Namespace = txtModulNamepace.Text,
                 EntitySet = txtEntitynamePlural.Text,
-                Entity = ((Type)cbEntity.SelectedItem).Name,
-                PropertyInfos = propertyInfos
+                Entity = currentEntityName,
+                PropertyInfos = selectedPropertyInfos
             };
 
             if (outputDestination == OutputEnum.OutputDir)
@@ -416,7 +460,7 @@ namespace CodeGen
                 txtProjectApiPath.Text = projectApiPath.GetValue("ProjectApiPath", defaultOutputPath)?.ToString();
         }
 
-    
+
     }
 }
 

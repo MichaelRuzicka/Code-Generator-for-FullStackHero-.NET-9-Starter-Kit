@@ -115,6 +115,10 @@
             layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(components);
             textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            lblStatusCaption = new System.Windows.Forms.Label();
+            layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
+            lblStatus = new System.Windows.Forms.Label();
+            layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtProjectApiPath.Properties).BeginInit();
@@ -198,10 +202,14 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem29).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem30).BeginInit();
             ((System.ComponentModel.ISupportInitialize)textEdit1.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem31).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem32).BeginInit();
             SuspendLayout();
             // 
             // layoutControl1
             // 
+            layoutControl1.Controls.Add(lblStatus);
+            layoutControl1.Controls.Add(lblStatusCaption);
             layoutControl1.Controls.Add(btnProjectApiPath);
             layoutControl1.Controls.Add(txtProjectApiPath);
             layoutControl1.Controls.Add(txtRootNameSpace);
@@ -779,7 +787,7 @@
             // 
             Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             Root.GroupBordersVisible = false;
-            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { liModel, emptySpaceItem1, layoutControlItem1, layoutControlItem5, layoutControlItem6, emptySpaceItem2, layoutControlItem8, layoutControlItem9, layoutControlItem7, emptySpaceItem3, emptySpaceItem4, layoutControlItem10, layoutControlItem2, layoutControlItem24, layoutControlItem25, layoutControlItem23, layoutControlItem26, layoutControlItem27, layoutControlItem28, layoutControlItem29, layoutControlItem30 });
+            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { liModel, emptySpaceItem1, layoutControlItem1, layoutControlItem5, layoutControlItem6, emptySpaceItem2, layoutControlItem8, layoutControlItem9, layoutControlItem7, emptySpaceItem3, emptySpaceItem4, layoutControlItem10, layoutControlItem2, layoutControlItem24, layoutControlItem25, layoutControlItem23, layoutControlItem26, layoutControlItem27, layoutControlItem28, layoutControlItem29, layoutControlItem30, layoutControlItem31, layoutControlItem32 });
             Root.Name = "Root";
             Root.Size = new System.Drawing.Size(1006, 715);
             Root.TextVisible = false;
@@ -794,9 +802,9 @@
             // 
             // emptySpaceItem1
             // 
-            emptySpaceItem1.Location = new System.Drawing.Point(0, 669);
+            emptySpaceItem1.Location = new System.Drawing.Point(730, 669);
             emptySpaceItem1.Name = "emptySpaceItem1";
-            emptySpaceItem1.Size = new System.Drawing.Size(745, 26);
+            emptySpaceItem1.Size = new System.Drawing.Size(15, 26);
             // 
             // layoutControlItem1
             // 
@@ -958,6 +966,38 @@
             textEdit1.Size = new System.Drawing.Size(100, 20);
             textEdit1.TabIndex = 0;
             // 
+            // lblStatusCaption
+            // 
+            lblStatusCaption.Location = new System.Drawing.Point(12, 681);
+            lblStatusCaption.Name = "lblStatusCaption";
+            lblStatusCaption.Size = new System.Drawing.Size(85, 22);
+            lblStatusCaption.TabIndex = 18;
+            lblStatusCaption.Text = "Status:";
+            // 
+            // layoutControlItem31
+            // 
+            layoutControlItem31.Control = lblStatusCaption;
+            layoutControlItem31.Location = new System.Drawing.Point(0, 669);
+            layoutControlItem31.Name = "layoutControlItem31";
+            layoutControlItem31.Size = new System.Drawing.Size(89, 26);
+            layoutControlItem31.TextVisible = false;
+            // 
+            // lblStatus
+            // 
+            lblStatus.Location = new System.Drawing.Point(101, 681);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new System.Drawing.Size(637, 22);
+            lblStatus.TabIndex = 19;
+            lblStatus.Text = "Waiting...";
+            // 
+            // layoutControlItem32
+            // 
+            layoutControlItem32.Control = lblStatus;
+            layoutControlItem32.Location = new System.Drawing.Point(89, 669);
+            layoutControlItem32.Name = "layoutControlItem32";
+            layoutControlItem32.Size = new System.Drawing.Size(641, 26);
+            layoutControlItem32.TextVisible = false;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1049,6 +1089,8 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem29).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem30).EndInit();
             ((System.ComponentModel.ISupportInitialize)textEdit1.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem31).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem32).EndInit();
             ResumeLayout(false);
         }
 
@@ -1135,6 +1177,10 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem30;
         private DevExpress.XtraEditors.CheckEdit chkEditAll;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblStatusCaption;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem31;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem32;
     }
 }
 
