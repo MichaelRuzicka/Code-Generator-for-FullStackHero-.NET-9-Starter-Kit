@@ -119,6 +119,7 @@ namespace CodeGen
             var properties = entityType.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly);
 
             checkedListBoxControl1.Items.AddRange(properties);
+
             ((BaseCheckedListBoxControl)checkedListBoxControl1).CheckAll();
             txtEntitynamePlural.Text = entityType.Name + "s";
 
