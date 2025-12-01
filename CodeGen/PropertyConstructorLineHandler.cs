@@ -1,4 +1,5 @@
 ﻿using DevExpress.Xpo;
+using DevExpress.XtraCharts.Designer.Native;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -26,12 +27,15 @@ namespace CodeGen
         private static string ContructorBuilder(string propertyConstructor, PropertyInfo pInfo)
         {
             if (pInfo.CustomAttributes != null && pInfo.CustomAttributes.Any(a => a.AttributeType.Name == "NullableAttribute" || a.AttributeType.Name == "InversePropertyAttribute"))
-                propertyConstructor += $"{pInfo.PropertyType.ToString().Replace("`1", "").Replace("[", "<").Replace("]", ">?")} {pInfo.Name} = null, {Environment.NewLine}";
+                if (pInfo.PropertyType.IsGenericType)
+                    propertyConstructor += $"{pInfo.PropertyType.ToString().Replace("`1", "").Replace("[", "<").Replace("]", ">?")} {pInfo.Name} = null, {Environment.NewLine}";
+            else
+                    propertyConstructor += $"{pInfo.PropertyType.ToString()} {pInfo.Name} = null, {Environment.NewLine}";
             else
                 if (pInfo.PropertyType.Name.Contains("Nullable`1"))
-                propertyConstructor += $"{pInfo.PropertyType.ToString().Replace("System.Nullable`1[", "").Replace("]", "?")} {pInfo.Name}, {Environment.NewLine}";
-            else
-                propertyConstructor += $"{pInfo.PropertyType} {pInfo.Name}, {Environment.NewLine}";
+                    propertyConstructor += $"{pInfo.PropertyType.ToString().Replace("System.Nullable`1[", "").Replace("]", "?")} {pInfo.Name}, {Environment.NewLine}";
+                else
+                    propertyConstructor += $"{pInfo.PropertyType} {pInfo.Name}, {Environment.NewLine}";
             return propertyConstructor;
         }
 

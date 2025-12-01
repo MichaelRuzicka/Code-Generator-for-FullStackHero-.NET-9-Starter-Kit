@@ -38,6 +38,7 @@ namespace CodeGen
 
         public string OutputPath { get; set; }
 
+        public string PluralEx { get; set; }
 
         //public string DataType { get; set; }
 

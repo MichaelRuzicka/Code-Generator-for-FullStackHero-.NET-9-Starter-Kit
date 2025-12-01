@@ -40,8 +40,6 @@ namespace CodeGen
             List<string> newLines = new List<string>();
             using (StreamReader templateFile = new StreamReader(templateFilename))
             {
-
-      
                 int counter = 0;
                 string line;
 
@@ -57,8 +55,8 @@ namespace CodeGen
                             break;
                         }
                     }
-
-                    ProcessTemplateLine(ref line);
+                    if (line.Contains("[") && line.Contains("]"))
+                        ProcessTemplateLine(ref line);
                     newLines.Add(line);
                     Console.WriteLine(line);
                     counter++;

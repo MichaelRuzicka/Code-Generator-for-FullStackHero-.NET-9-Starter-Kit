@@ -17,11 +17,15 @@ public sealed class Get[Entity]Handler([FromKeyedServices("[ServiceKey]")] IRead
             $"[Entity_]:{request.Id}",
             async () =>
             {
-                var [Entity_]Item = await repository.GetByIdAsync(request.Id, cancellationToken);
 
-                if ([Entity_]Item == null) throw new [Entity]NotFoundException(request.Id);
+            var spec = new Get[Entity]Specs(request.Id);
+            var [Entity_]item = await repository.FirstOrDefaultAsync(spec, cancellationToken);
+            if ([Entity_]item == null) throw new [Entity]NotFoundException(request.Id);
+            return [Entity_]item;
 
-                return new [Entity]Response([EntityItemFields]);
+            // var [Entity_]Item = await repository.GetByIdAsync(request.Id, cancellationToken);
+            // if ([Entity_]Item == null) throw new [Entity]NotFoundException(request.Id);
+            // return new [Entity]Response([EntityItemFields]);
             },
             cancellationToken: cancellationToken);
         return item!;

@@ -49,14 +49,14 @@ namespace CodeGen
                 services.AddTransient<ITemplateLineHandler, RoutesLineHandler>();
                 services.AddTransient<ITemplateLineHandler, PropertyListingLineHandler>();
                 services.AddTransient<ITemplateLineHandler, PropertyConstructorLineHandler>();
+                services.AddTransient<ITemplateLineHandler, PropertyResponseConstructorLineHandler>();
                 services.AddTransient<ITemplateLineHandler, PrimaryKeyWithPropertyLineHandler>();
                 services.AddTransient<ITemplateLineHandler, PrimaryKeyWithDataTypeLowerCaseLineHandler>();
                 services.AddTransient<ITemplateLineHandler, PrimaryKeyWithDataTypeUpperCaseLineHandler>();
                 services.AddTransient<ITemplateLineHandler, PrimaryKeyFieldNameLowerCaseLineHandler>();
                 services.AddTransient<ITemplateLineHandler, PrimaryKeyFieldNameUpperCaseLineHandler>();
-                services.AddTransient<ITemplateLineHandler, PrimaryKeyWhereLineHandler>();
                 services.AddTransient<ITemplateLineHandler, PrimaryKeyFieldDataTypeLowerCaseLineHandler>();
-                
+                services.AddTransient<ITemplateLineHandler, SpecificationIncludeLineHandler>();
                 services.AddTransient<frmMain>();
             });
         }

@@ -7,9 +7,7 @@ public class Get[Entity]Specs : Specification<[Entity], [Entity]Response>
 {
     public Get[Entity]Specs([PrimaryKeyWithDataTypeLowerCase])
     {
-    Query
-        .Where(p => p.[PrimaryKeyWhere]);
-            //.Include(p => p.Brand);
+        [SpecificationInclude]
     }
 }
 

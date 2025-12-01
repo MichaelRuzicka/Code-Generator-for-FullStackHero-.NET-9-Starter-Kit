@@ -51,6 +51,9 @@ namespace CodeGen
         [EnumMember(Value = "[PropertyConstructor]")]
         PropertyConstructor,
 
+        [EnumMember(Value = "[PropertyResponseConstructor]")]
+        PropertyResponseConstructor,
+
         [EnumMember(Value = "[PrimaryKeyWithProperty]")]
         PrimaryKeyWithProperty,
 
@@ -68,10 +71,9 @@ namespace CodeGen
 
         [EnumMember(Value = "[PrimaryKeyFieldDataTypeLowerCase]")]
         PrimaryKeyFieldDataTypeLowerCase,
-        
 
-        [EnumMember(Value = "[PrimaryKeyWhere]")]
-        PrimaryKeyWhere,
+        [EnumMember(Value = "[SpecificationInclude]")]
+        SpecificationInclude,
 
         [EnumMember(Value = "//[Routes]")] //Enhance Routes Section in Module
         Routes,

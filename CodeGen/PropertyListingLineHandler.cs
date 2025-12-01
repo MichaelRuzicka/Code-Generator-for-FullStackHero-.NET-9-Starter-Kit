@@ -1,5 +1,6 @@
 ﻿using DevExpress.Xpo;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 
@@ -14,11 +15,14 @@ namespace CodeGen
             {
 
 
-                if (pInfo.CustomAttributes!= null && pInfo.CustomAttributes.Any(a => a.AttributeType.Name == "NullableAttribute" || a.AttributeType.Name == "InversePropertyAttribute"))
-                    propertyList += $"\tpublic {pInfo.PropertyType.ToString().Replace("`1","").Replace("[","<").Replace("]",">?")} {pInfo.Name} {{ get; set; }}{Environment.NewLine}";
+                if (pInfo.CustomAttributes != null && pInfo.CustomAttributes.Any(a => a.AttributeType.Name == "NullableAttribute" || a.AttributeType.Name == "InversePropertyAttribute"))
+                    if (pInfo.PropertyType.IsGenericType)
+                        propertyList += $"\tpublic {pInfo.PropertyType.ToString().Replace("`1", "").Replace("[", "<").Replace("]", ">?")} {pInfo.Name} {{ get; set; }}{Environment.NewLine}";
+                    else
+                        propertyList += $"\tpublic {pInfo.PropertyType.ToString()} {pInfo.Name} {{ get; set; }}{Environment.NewLine}";
                 else
                        if (pInfo.PropertyType.Name.Contains("Nullable`1"))
-                    propertyList += $"\tpublic {pInfo.PropertyType.ToString().Replace("System.Nullable`1[","").Replace("]","?")} {pInfo.Name} {{ get; set; }}{Environment.NewLine}";
+                    propertyList += $"\tpublic {pInfo.PropertyType.ToString().Replace("System.Nullable`1[", "").Replace("]", "?")} {pInfo.Name} {{ get; set; }}{Environment.NewLine}";
                 else
                     propertyList += $"\tpublic {pInfo.PropertyType} {pInfo.Name} {{ get; set; }}{Environment.NewLine}";
             }

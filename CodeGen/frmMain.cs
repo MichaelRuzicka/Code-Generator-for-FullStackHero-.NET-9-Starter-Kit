@@ -1,20 +1,21 @@
-﻿using DevExpress.Mvvm.POCO;
+﻿using DevExpress.CodeParser;
+using DevExpress.Diagram.Core.Native.Generation;
+using DevExpress.Mvvm.POCO;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraRichEdit.Model;
+using DevExpress.XtraTreeList;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Windows.Forms;
-using System.Collections.Generic;
-using DevExpress.XtraEditors.Controls;
-using System.IO;
-using Microsoft.Extensions.DependencyInjection;
-using DevExpress.XtraTreeList;
-using DevExpress.CodeParser;
-using DevExpress.XtraRichEdit.Model;
-using DevExpress.Diagram.Core.Native.Generation;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CodeGen
 {
@@ -121,7 +122,6 @@ namespace CodeGen
             checkedListBoxControl1.Items.AddRange(properties);
 
             ((BaseCheckedListBoxControl)checkedListBoxControl1).CheckAll();
-            txtEntitynamePlural.Text = entityType.Name + "s";
 
 
         }
@@ -186,7 +186,7 @@ namespace CodeGen
                 var entityType = (Type)item;
                 var entity = Activator.CreateInstance(entityType);
                 List<System.Reflection.PropertyInfo> propertyInfos = entityType.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly).ToList();
-                txtEntitynamePlural.Text = entityType.Name + "s";
+          
 
                 TemplateSelector(outputDestination, ((Type)item).Name, propertyInfos);
             }
@@ -212,8 +212,10 @@ namespace CodeGen
                 ModuleName = txtModulName.Text,
                 Root_Namespace = txtRootNameSpace.Text,
                 Module_Namespace = txtModulNamepace.Text,
-                EntitySet = txtEntitynamePlural.Text,
+                PluralEx = txtEntitynamePlural.Text,
+                EntitySet = currentEntityName + txtEntitynamePlural.Text,
                 Entity = currentEntityName,
+
                 PropertyInfos = selectedPropertyInfos
             };
 
