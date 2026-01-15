@@ -168,9 +168,9 @@ namespace CodeGen
         private void btnBuildProject_Click(object sender, EventArgs e)
         {
             if (cbEntity.EditValue as string == "All Entities")
-                 BuildProjectAllEntities(OutputEnum.ProjectDir);
+                BuildProjectAllEntities(OutputEnum.ProjectDir);
             else
-                 TemplateSelectorSingle(OutputEnum.ProjectDir);
+                TemplateSelectorSingle(OutputEnum.ProjectDir);
 
             lblStatus.Text = $"Waiting...";
             XtraMessageBox.Show("Project build completed", "Code Generator", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -184,11 +184,9 @@ namespace CodeGen
                 if (item.ToString() == "All Entities")
                     continue;
                 var entityType = (Type)item;
-                var entity = Activator.CreateInstance(entityType);
+                //var entity = Activator.CreateInstance(entityType);
                 List<System.Reflection.PropertyInfo> propertyInfos = entityType.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly).ToList();
-          
-
-                TemplateSelector(outputDestination, ((Type)item).Name, propertyInfos);
+                TemplateSelector(outputDestination, entityType.Name, propertyInfos, entityType.GetInterfaces().Any(i => i.Name == "IAggregateRoot"));
             }
         }
 
@@ -199,10 +197,11 @@ namespace CodeGen
             foreach (CheckedListBoxItem item in checkedListBoxControl1.CheckedItems)
                 propertyInfos.Add(item.Value as System.Reflection.PropertyInfo);
 
-            TemplateSelector(outputDestination, ((Type)cbEntity.SelectedItem).Name, propertyInfos);
+            var entityType = (Type)cbEntity.SelectedItem;
+            TemplateSelector(outputDestination, entityType.Name, propertyInfos, entityType.GetInterfaces().Any(i => i.Name == "IAggregateRoot"));
         }
 
-        private void TemplateSelector(OutputEnum outputDestination, string currentEntityName, List<System.Reflection.PropertyInfo> selectedPropertyInfos)
+        private void TemplateSelector(OutputEnum outputDestination, string currentEntityName, List<System.Reflection.PropertyInfo> selectedPropertyInfos, bool isIsAggregateRoot)
         {
             lblStatus.Text = $"Processing {currentEntityName}";
             lblStatus.Refresh();
@@ -215,7 +214,7 @@ namespace CodeGen
                 PluralEx = txtEntitynamePlural.Text,
                 EntitySet = currentEntityName + txtEntitynamePlural.Text,
                 Entity = currentEntityName,
-
+                EntityIsIAggregateRoot = isIsAggregateRoot,
                 PropertyInfos = selectedPropertyInfos
             };
 

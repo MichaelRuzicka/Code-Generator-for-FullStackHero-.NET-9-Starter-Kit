@@ -36,8 +36,12 @@ namespace CodeGen
         [EnumMember(Value = "[DefaultValue]")]
         DefaultValue,
 
-        [EnumMember(Value = "[RequestFields]")]
-        RequestFields,
+
+        [EnumMember(Value = "[CreateFields]")]
+        CreateFields,
+
+        [EnumMember(Value = "[UpdateFields]")]
+        UpdateFields,
 
         [EnumMember(Value = "[EntityItemFields]")] //zb. customerItem.Name
         EntityItemFields,
@@ -48,11 +52,14 @@ namespace CodeGen
         [EnumMember(Value = "[PropertyListing]")]
         PropertyListing,
 
-        [EnumMember(Value = "[PropertyConstructor]")]
-        PropertyConstructor,
+        [EnumMember(Value = "[CreatePropertyConstructor]")]
+        CreatePropertyConstructor,
 
-        [EnumMember(Value = "[PropertyResponseConstructor]")]
-        PropertyResponseConstructor,
+        [EnumMember(Value = "[UpdateCommandConstructor]")]
+        UpdateCommandConstructor,
+
+        [EnumMember(Value = "[ResponsePropertyConstructor]")]
+        ResponsePropertyConstructor,
 
         [EnumMember(Value = "[PrimaryKeyWithProperty]")]
         PrimaryKeyWithProperty,

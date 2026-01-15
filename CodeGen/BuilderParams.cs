@@ -32,6 +32,8 @@ namespace CodeGen
             }
         }
 
+        public bool EntityIsIAggregateRoot { get; set; }
+
         public string Entity_ { get; private set; }
 
         public string Entity_PropertyId { get; private set; }

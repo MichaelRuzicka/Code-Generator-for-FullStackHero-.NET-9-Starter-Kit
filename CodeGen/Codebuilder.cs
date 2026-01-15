@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.Design;
 
 namespace CodeGen
 {
@@ -30,7 +31,39 @@ namespace CodeGen
 
             foreach (string templateFilename in Params.TemplatePaths)
             {
-                TemplateLineReader(templateFilename); //Read Tenplate
+                string fileName = Path.GetFileName(templateFilename);
+                if (!Params.EntityIsIAggregateRoot) //Skip CRUD Templates for non Aggregate Roots
+                {
+
+
+                    if (fileName.StartsWith(@"Create") && fileName != "CreateTemplateCommandValidator.cs")
+                    {
+                        DeleteFileFromProjectDir(Path.GetFileName(templateFilename).Replace("Template", Params.Entity));
+                        continue;
+                    }
+                    if (fileName.StartsWith(@"Update") && fileName != "UpdateTemplateCommandValidator.cs")
+                    {
+                        DeleteFileFromProjectDir(Path.GetFileName(templateFilename).Replace("Template", Params.Entity));
+                        continue;
+                    }
+                    if (fileName.StartsWith(@"Delete"))
+                    {
+                        DeleteFileFromProjectDir(Path.GetFileName(templateFilename).Replace("Template", Params.Entity));
+                        continue;
+                    }
+                    if (fileName.StartsWith(@"Get"))
+                    {
+                        DeleteFileFromProjectDir(Path.GetFileName(templateFilename).Replace("Template", Params.Entity));
+                        continue;
+                    }
+                    if (fileName.StartsWith(@"Search"))
+                    {
+                        DeleteFileFromProjectDir(Path.GetFileName(templateFilename).Replace("Template", Params.Entity));
+                        continue;
+                    }
+                }
+
+                TemplateLineReader(templateFilename); //Read Template
             }
         }
 
@@ -80,13 +113,23 @@ namespace CodeGen
             }
             else
             {
+
+                switch (Path.GetFileName(templateFilename))
+                {
+                    case "CreateTemplateCommandValidator.cs":
+                        newLines = newLines.Select(s => s.Replace($"AbstractValidator<Create{Params.Entity}Command>", $"AbstractValidator<{Params.Root_Namespace}.WebApi.Pos.Domain.{Params.Entity}>")).ToList();
+                        break;
+                    case "UpdateTemplateCommandValidator.cs":
+                        newLines = newLines.Select(s => s.Replace($"AbstractValidator<Update{Params.Entity}Command>", $"AbstractValidator<{Params.Root_Namespace}.WebApi.Pos.Domain.{Params.Entity}>")).ToList();
+                        break;
+                }
+
                 if (Params.OutputDestination == OutputEnum.OutputDir)
                     TemplateLineWriterOutputDir(newLines.ToArray(), Path.GetFileName(templateFilename).Replace("Template", Params.Entity));
                 else
                     TemplateLineWriterProjectDir(newLines.ToArray(), Path.GetFileName(templateFilename).Replace("Template", Params.Entity));
             }
         }
-
 
 
         private void ProcessTemplateLine(ref string templateLine)
@@ -104,6 +147,103 @@ namespace CodeGen
             string fullPath = folder + @"\" + Path.GetFileName(templateFileNamePath);
             File.WriteAllLines(fullPath, newlines);
         }
+
+        private void DeleteFileFromProjectDir(string fileName)
+        {
+            string folder = Params.OutputPath;
+            string templateFileName = string.Empty;
+
+            if (Params.TemplateName == "RoutesAndRegisterServices")
+                templateFileName = Path.GetFileName(fileName).Replace(Params.ModuleName, "Template"); //Rename Back since switch/case cant be dynamic
+            else
+                templateFileName = Path.GetFileName(fileName).Replace(Params.Entity, "Template"); //Rename Back since switch/case cant be dynamic
+            string projectPath = string.Empty;
+
+            switch (templateFileName)
+            {
+                #region Application
+
+                //SolutionPath: WebApi/Modules/[Module]/[Module].Application/[EntitySet]/
+
+                //FilePath: api\modules\[Module]\[Module].Application\[EntitySet]\
+
+                //Create/v1/
+                case "CreateTemplateCommand.cs":
+                case "CreateTemplateHandler.cs":
+                case "CreateTemplateResponse.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Application\\{Params.EntitySet}\\Create\\v1\\";
+                    break;
+
+                //Delete/v1/
+                case "DeleteTemplateCommand.cs":
+                case "DeleteTemplateHandler.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Application\\{Params.EntitySet}\\Delete\\v1\\";
+                    break;
+
+                //EventHandlers/v1/
+                case "TemplateCreatedEventHandler.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Application\\{Params.EntitySet}\\EventHandlers\\v1\\";
+                    break;
+
+                //Get/v1/
+                case "GetTemplateHandler.cs":
+                case "GetTemplateRequest.cs":
+                case "GetTemplateSpecs.cs":
+                case "TemplateResponse.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Application\\{Params.EntitySet}\\Get\\v1\\";
+                    break;
+
+                //Search/v1/
+                case "SearchTemplateCommand.cs":
+                case "SearchTemplateHandler.cs":
+                case "SearchTemplateSpecs.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Application\\{Params.EntitySet}\\Search\\v1\\";
+                    break;
+
+                //Update/v1/
+                case "UpdateTemplateCommand.cs":
+                case "UpdateTemplateCommandValidator.cs":
+                case "UpdateTemplateHandler.cs":
+                case "UpdateTemplateResponse.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Application\\{Params.EntitySet}\\Update\\v1\\";
+                    break;
+                #endregion
+
+
+                #region Domain
+                //Domain/Events/
+                case "TemplateCreated.cs":
+                case "TemplateUpdated.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Domain\\Events\\";
+                    break;
+
+                //Domain/Exceptions/
+                case "TemplateNotFoundException.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Domain\\Exceptions\\";
+                    break;
+                #endregion
+
+                //Infrastructure/Endpoints/v1/
+                case "CreateTemplateEndpoint.cs":
+                case "DeleteTemplateEndpoint.cs":
+                case "GetTemplateEndpoint.cs":
+                case "SearchTemplateEndpoint.cs":
+                case "UpdateTemplateEndpoint.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Infrastructure\\Endpoints\\v1\\";
+                    break;
+
+                //Infrastructure/
+                case "TemplateModule.cs":
+                    projectPath = $"{Params.OutputPath}\\Modules\\{Params.ModuleName}\\{Params.ModuleName}.Infrastructure\\";
+                    break;
+
+
+                default:
+                    break;
+            }
+            File.Delete($"{projectPath}{fileName}");
+        }
+
 
         private void TemplateLineWriterProjectDir(string[] newlines, string fileName)
         {
